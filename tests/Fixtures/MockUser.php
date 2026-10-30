@@ -19,6 +19,7 @@ class MockUser implements AuthenticatableUserInterface
     public function getName(): string { return $this->name; }
     public function getEmail(): string { return $this->email; }
     public function getRole(): string { return $this->role; }
+    public function isOwner(): bool { return in_array(strtolower($this->role), ['owner', 'mitra', 'superadmin']); }
     public function isSuperadmin(): bool { return $this->isSuperadmin; }
     public function getAvatarUrl(): ?string { return $this->avatarUrl; }
 }

@@ -6,6 +6,11 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Kaching\BackOffice\Http\Controllers\DashboardController;
 use Kaching\BackOffice\Http\Controllers\MenuController;
+use Kaching\BackOffice\Http\Controllers\InventoryController;
+use Kaching\BackOffice\Http\Controllers\ReservationController;
+use Kaching\BackOffice\Http\Controllers\ProcurementController;
+use Kaching\BackOffice\Http\Controllers\StaffController;
+use Kaching\BackOffice\Http\Controllers\ShiftController;
 use Kaching\BackOffice\Http\Middleware\EnforceBackOfficePermission;
 
 class BackOfficeServiceProvider extends ServiceProvider
@@ -47,6 +52,12 @@ class BackOfficeServiceProvider extends ServiceProvider
                 Route::get('/menus', [MenuController::class, 'index'])->name('menus');
                 Route::post('/menus/{id}/toggle-available', [MenuController::class, 'toggleAvailable'])->name('menus.toggle');
                 Route::post('/menus/{id}/quick-stock', [MenuController::class, 'quickStock'])->name('menus.quick-stock');
+
+                Route::get('/inventory', [InventoryController::class, 'index'])->name('inventory');
+                Route::get('/reservations', [ReservationController::class, 'index'])->name('reservations');
+                Route::get('/procurement', [ProcurementController::class, 'index'])->name('procurement');
+                Route::get('/staff', [StaffController::class, 'index'])->name('staff');
+                Route::get('/shifts', [ShiftController::class, 'index'])->name('shifts');
             });
     }
 }

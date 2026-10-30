@@ -22,6 +22,21 @@
                 <a href="{{ route('backoffice.menus') }}" class="flex items-center px-3 py-2 text-sm font-medium rounded-md hover:bg-slate-800 transition">
                     Menu & Katalog
                 </a>
+                <a href="{{ route('backoffice.inventory') }}" class="flex items-center px-3 py-2 text-sm font-medium rounded-md hover:bg-slate-800 transition">
+                    Inventaris & Bahan
+                </a>
+                <a href="{{ route('backoffice.reservations') }}" class="flex items-center px-3 py-2 text-sm font-medium rounded-md hover:bg-slate-800 transition">
+                    Reservasi Meja
+                </a>
+                <a href="{{ route('backoffice.procurement') }}" class="flex items-center px-3 py-2 text-sm font-medium rounded-md hover:bg-slate-800 transition">
+                    Pengadaan & Supplier
+                </a>
+                <a href="{{ route('backoffice.staff') }}" class="flex items-center px-3 py-2 text-sm font-medium rounded-md hover:bg-slate-800 transition">
+                    Karyawan & Hak Akses
+                </a>
+                <a href="{{ route('backoffice.shifts') }}" class="flex items-center px-3 py-2 text-sm font-medium rounded-md hover:bg-slate-800 transition">
+                    Riwayat Shift Kasir
+                </a>
             </nav>
             <div class="p-4 border-t border-slate-800 text-xs text-slate-400">
                 <p>Kaching Modular UI</p>

@@ -7,10 +7,23 @@ use Kaching\BackOffice\Contracts\CurrentOutletResolverInterface;
 class MockOutletResolver implements CurrentOutletResolverInterface
 {
     protected ?int $currentOutletId = 1;
+    protected bool $isGlobal = false;
 
     public function getCurrentOutletId(): ?int
     {
-        return $this->currentOutletId;
+        return $this->isGlobal ? null : $this->currentOutletId;
+    }
+
+    public function isGlobalOutletSelected(): bool
+    {
+        return $this->isGlobal;
+    }
+
+    public function selectGlobalOutlet(): bool
+    {
+        $this->isGlobal = true;
+        $this->currentOutletId = null;
+        return true;
     }
 
     public function getAccessibleOutlets(): array
@@ -23,6 +36,7 @@ class MockOutletResolver implements CurrentOutletResolverInterface
 
     public function switchOutlet(int $outletId): bool
     {
+        $this->isGlobal = false;
         $this->currentOutletId = $outletId;
         return true;
     }
