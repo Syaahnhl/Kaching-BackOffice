@@ -1,0 +1,61 @@
+# Kaching-BackOffice Code Ownership Matrix
+# Syntax: <path> <lead-reviewer>
+#
+# NOTE: Saat ini repositori personal Syaahnhl/Kaching-BackOffice memiliki satu
+# maintainer resmi (@Syaahnhl). Seluruh kepemilikan global dan domain diarahkan
+# ke @Syaahnhl sebagai verified owner fallback.
+# Rancangan pembagian domain per tim pengembang dicantumkan dalam komentar di bawah
+# dan akan diaktifkan secara bertahap saat anggota tim telah bergabung ke repository.
+
+# Global Project Lead & Maintainer (Authoritative Fallback)
+* @Syaahnhl
+
+# Core Contracts, DTO & Architecture (Strict Review Required)
+# Future: @Syaahnhl (Lead Architect)
+/src/Contracts/ @Syaahnhl
+/src/DTO/ @Syaahnhl
+/src/BackOfficeServiceProvider.php @Syaahnhl
+/config/ @Syaahnhl
+
+# Shared Layout & Global UI Components
+# Future: @lead-ui-designer @Syaahnhl
+/resources/views/backoffice/master.blade.php @Syaahnhl
+
+# Domain: Dashboard & Overview
+# Future: @dev-web-dashboard
+/src/Http/Controllers/DashboardController.php @Syaahnhl
+/resources/views/backoffice/dashboard.blade.php @Syaahnhl
+
+# Domain: Menu & Catalog
+# Future: @dev-web-menu
+/src/Http/Controllers/MenuController.php @Syaahnhl
+/resources/views/backoffice/menus.blade.php @Syaahnhl
+
+# Domain: Inventory & Stock
+# Future: @dev-web-inventory
+/src/Http/Controllers/InventoryController.php @Syaahnhl
+/resources/views/backoffice/inventory.blade.php @Syaahnhl
+
+# Domain: Procurement & Suppliers
+# Future: @dev-web-procurement
+/src/Http/Controllers/ProcurementController.php @Syaahnhl
+/resources/views/backoffice/procurement.blade.php @Syaahnhl
+
+# Domain: Reservations & Tables
+# Future: @dev-web-reservation
+/src/Http/Controllers/ReservationController.php @Syaahnhl
+/resources/views/backoffice/reservations.blade.php @Syaahnhl
+
+# Domain: Staff & Access Rights
+# Future: @dev-web-staff
+/src/Http/Controllers/StaffController.php @Syaahnhl
+/resources/views/backoffice/staff.blade.php @Syaahnhl
+
+# Domain: Shift History & Cashier Reports
+# Future: @dev-web-shift
+/src/Http/Controllers/ShiftController.php @Syaahnhl
+/resources/views/backoffice/shifts.blade.php @Syaahnhl
+
+# Test Suite & Mock Fixtures
+# Future: @qa-tester @Syaahnhl
+/tests/ @Syaahnhl
