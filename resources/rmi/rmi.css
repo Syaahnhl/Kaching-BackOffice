@@ -1,0 +1,200 @@
+#rmi-app{font-family:"Plus Jakarta Sans",ui-sans-serif,system-ui,sans-serif;--rmi-ink:#17243a;--rmi-muted:#62748e;--rmi-blue:#315cf5;--rmi-border:#e2e8f1;--rmi-surface:#fff;color:var(--rmi-ink);max-width:1220px;margin:0 auto;padding-bottom:80px;font-size:14px;line-height:1.6;isolation:isolate}
+#rmi-app *,#rmi-app *::before,#rmi-app *::after{box-sizing:border-box}
+#rmi-app [hidden]{display:none!important}
+#rmi-app svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+#rmi-app .rmi-symbols{position:absolute;width:0;height:0;overflow:hidden}
+#rmi-app button,#rmi-app input,#rmi-app select{font:inherit}
+#rmi-app button{cursor:pointer}
+#rmi-app button,#rmi-app a,#rmi-app input,#rmi-app select{transition:background-color .15s,border-color .15s,box-shadow .15s}
+#rmi-app :focus-visible{outline:3px solid #7895ff;outline-offset:3px}
+#rmi-app h2,#rmi-app h3,#rmi-app h4,#rmi-app p{margin:0}
+#rmi-app h2{font-size:28px;letter-spacing:-1px;line-height:1.3;font-weight:800;margin:10px 0 8px}
+#rmi-app h3{font-size:17px;font-weight:800;line-height:1.45;letter-spacing:-.35px}
+#rmi-app h4{font-size:14px;font-weight:700;line-height:1.5}
+#rmi-app p{color:var(--rmi-muted)}
+#rmi-app .rmi-eyebrow{font-size:10px;font-weight:800;letter-spacing:1.1px;color:var(--rmi-muted);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+#rmi-app .rmi-badge{display:inline-flex;align-items:center;gap:6px;white-space:nowrap;background:#f0f3f8;color:#52647d;border:1px solid #e2e8f1;border-radius:6px;font-size:10px;line-height:1.5;padding:4px 8px;font-weight:700;letter-spacing:0;vertical-align:middle}
+#rmi-app .rmi-badge-amber{background:#fff6e7;color:#895005;border-color:#f6d995}
+#rmi-app .rmi-badge-blue{background:#eef3ff;color:#254aca;border-color:#dce5ff}
+#rmi-app .rmi-badge-green{background:#eaf9f2;color:#08775e;border-color:#c9eddd}
+#rmi-app .rmi-badge-dark{background:#ffffff12;color:#c7eedc;border-color:#ffffff25}
+#rmi-app .rmi-heading{display:flex;justify-content:space-between;gap:24px;align-items:center;padding:2px 0 25px}
+#rmi-app .rmi-heading>div{min-width:0}
+#rmi-app .rmi-heading>div>p{font-size:13px}
+#rmi-app .rmi-button{border:1px solid transparent;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:11px 15px;min-height:44px;font-size:12px;font-weight:750;text-decoration:none;line-height:1.5;white-space:normal;text-align:center}
+#rmi-app .rmi-button svg{width:17px;height:17px}
+#rmi-app .rmi-button-primary{background:var(--rmi-blue);color:white;box-shadow:0 3px 6px #315cf51a}
+#rmi-app .rmi-button-primary:hover{background:#254aca}
+#rmi-app .rmi-button-secondary{background:white;color:#334766;border-color:var(--rmi-border)}
+#rmi-app .rmi-button-secondary:hover{background:#f2f6fc;border-color:#c3d0e6}
+#rmi-app .rmi-button-white{background:white;color:#2346b9}
+#rmi-app .rmi-button-white:hover{background:#eef3ff}
+#rmi-app .rmi-button-full{width:100%}
+#rmi-app .rmi-text-button{display:inline-flex;align-items:center;gap:8px;border:0;background:transparent;color:#254aca;font-size:12px;font-weight:700;min-height:44px;padding:6px 0;text-decoration:none;text-align:left}
+#rmi-app .rmi-text-button svg{width:15px;height:15px}
+#rmi-app .rmi-text-button:hover{text-decoration:underline}
+#rmi-app .rmi-tabbar{display:flex;gap:22px;border-bottom:1px solid var(--rmi-border);margin-bottom:16px;position:sticky;top:calc(-1 * var(--rmi-scroll-padding,32px));background:#f8fafc;z-index:5}
+#rmi-app .rmi-tabbar>button{display:flex;align-items:center;gap:8px;border:0;border-bottom:3px solid transparent;background:transparent;padding:13px 7px 14px;color:var(--rmi-muted);font-size:13px;font-weight:700;min-height:48px}
+#rmi-app .rmi-tabbar>button[aria-selected=true]{color:#254aca;border-bottom-color:var(--rmi-blue)}
+#rmi-app .rmi-tabbar>button:hover{background:#eef3ff}
+#rmi-app .rmi-tabbar svg{width:17px;height:17px}
+#rmi-app .rmi-demo-note{display:flex;gap:9px;align-items:flex-start;padding:11px 14px;border:1px solid #dce6fc;border-radius:10px;background:#f0f5ff;margin-bottom:24px;font-size:11px}
+#rmi-app .rmi-demo-note svg{width:16px;height:16px;color:#3b62bb;margin-top:1px}
+#rmi-app .rmi-demo-note p{color:#48638f}
+#rmi-app .rmi-demo-note strong{color:#294a83}
+#rmi-app .rmi-card{background:var(--rmi-surface);border:1px solid var(--rmi-border);border-radius:16px;box-shadow:0 2px 3px #17243a03}
+#rmi-app .rmi-overview-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:20px}
+#rmi-app .rmi-signal-card{background:linear-gradient(115deg,#172c58,#203961);color:white;padding:26px 28px 0;border-radius:16px;overflow:hidden}
+#rmi-app .rmi-signal-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+#rmi-app .rmi-signal-top>svg{width:30px;height:30px;color:#90b4ff}
+#rmi-app .rmi-dot{height:6px;width:6px;border-radius:50%;background:#68d9b0}
+#rmi-app .rmi-signal-category{font-size:11px;color:#b1c8ed;font-weight:600}
+#rmi-app .rmi-signal-card h3{font-size:24px;line-height:1.4;letter-spacing:-.6px;margin:8px 0 12px;color:white;max-width:520px}
+#rmi-app .rmi-signal-card>p{font-size:12px;line-height:1.9;color:#c9d5e9;max-width:480px}
+#rmi-app .rmi-signal-foot{display:flex;align-items:center;gap:18px;margin:23px 0}
+#rmi-app .rmi-signal-foot>span{font-size:10px;color:#bacbe4;max-width:145px;line-height:1.6}
+#rmi-app .rmi-signal-source{font-size:10px;color:#bacbe4;padding:12px 0;border-top:1px solid #ffffff20}
+#rmi-app .rmi-how-card{padding:25px}
+#rmi-app .rmi-how-card>h3{margin-top:8px}
+#rmi-app .rmi-steps{list-style:none;margin:22px 0 8px;padding:0;display:grid;gap:19px}
+#rmi-app .rmi-steps li{display:flex;align-items:flex-start;gap:12px}
+#rmi-app .rmi-steps li>span{display:flex;align-items:center;justify-content:center;flex-shrink:0;width:26px;height:26px;background:#eef3ff;border-radius:8px;color:#315cf5;font-size:11px;font-weight:800}
+#rmi-app .rmi-steps strong{font-size:12px;font-weight:700}
+#rmi-app .rmi-steps p{font-size:11px;margin-top:2px}
+#rmi-app .rmi-section-heading{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:30px 0 15px}
+#rmi-app .rmi-section-heading p{font-size:12px;margin-top:4px}
+#rmi-app .rmi-ingredient-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+#rmi-app .rmi-ingredient{text-align:left;padding:20px;display:flex;flex-direction:column;align-items:flex-start;color:var(--rmi-ink)}
+#rmi-app .rmi-ingredient:hover{border-color:#a7baff;box-shadow:0 5px 20px #315cf50b}
+#rmi-app .rmi-ingredient-icon{display:flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:11px;flex-shrink:0}
+#rmi-app .rmi-blue{background:#eef3ff;color:#315cf5}
+#rmi-app .rmi-rose{background:#fff0f2;color:#c13d54}
+#rmi-app .rmi-amber{background:#fff6e7;color:#a65e05}
+#rmi-app .rmi-ingredient-name{font-size:14px;font-weight:800;margin-top:14px}
+#rmi-app .rmi-ingredient-meta{font-size:11px;color:var(--rmi-muted);margin-top:4px}
+#rmi-app .rmi-card-rule{height:1px;width:100%;background:#edf1f7;margin:17px 0 12px}
+#rmi-app .rmi-ingredient-bottom{display:flex;justify-content:space-between;align-items:center;width:100%;font-size:11px;font-weight:700;color:#254aca}
+#rmi-app .rmi-ingredient-bottom svg{width:16px;height:16px}
+#rmi-app .rmi-reference-note{display:flex;gap:15px;align-items:center;padding:20px;margin-top:20px}
+#rmi-app .rmi-reference-note>div{flex:1}
+#rmi-app .rmi-reference-note p{font-size:11px;margin-top:4px;max-width:680px}
+#rmi-app .rmi-simulation-heading{margin-top:4px;margin-bottom:22px}
+#rmi-app .rmi-simulation-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:22px;align-items:start}
+#rmi-app .rmi-form{padding:25px}
+#rmi-app .rmi-form-title{display:flex;align-items:center;gap:12px;margin-bottom:22px}
+#rmi-app .rmi-form-title h3{font-size:15px}
+#rmi-app .rmi-form-title p{font-size:11px;margin-top:2px}
+#rmi-app .rmi-step-icon{display:flex;align-items:center;justify-content:center;flex-shrink:0;width:32px;height:32px;border-radius:10px;background:#315cf5;color:white;font-size:13px;font-weight:800}
+#rmi-app .rmi-step-muted{background:#eef3ff;color:#315cf5}
+#rmi-app .rmi-form>label{font-size:12px;font-weight:700;display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;gap:8px}
+#rmi-app .rmi-form select{width:100%;height:46px;background:white;border:1px solid #d5deeb;border-radius:9px;padding:10px 12px;font-size:13px;color:var(--rmi-ink)}
+#rmi-app .rmi-field-meta{display:flex;justify-content:space-between;gap:8px;font-size:10px;color:var(--rmi-muted);margin:8px 0 23px}
+#rmi-app .rmi-price-input{display:flex;align-items:center;border:1px solid #d5deeb;background:white;border-radius:9px;overflow:hidden;min-height:46px}
+#rmi-app .rmi-price-input:focus-within{border-color:var(--rmi-blue);box-shadow:0 0 0 3px #315cf520}
+#rmi-app .rmi-price-input>span{font-size:12px;color:var(--rmi-muted);padding:0 13px;white-space:nowrap}
+#rmi-app .rmi-price-input input{border:0;outline:0;background:transparent;min-width:0;flex:1;width:100%;height:44px;padding:10px 12px;color:var(--rmi-ink);font-size:14px;font-weight:700;box-shadow:none}
+#rmi-app .rmi-price-input input:focus-visible{outline:none}
+#rmi-app input[aria-invalid=true]{background:#fff5f6}
+#rmi-app .rmi-field-help{font-size:10px;margin:7px 0 20px}
+#rmi-app .rmi-mode-field{padding:0;margin:0 0 18px;border:0;min-width:0}
+#rmi-app .rmi-mode-field legend{font-size:12px;font-weight:700;margin-bottom:8px}
+#rmi-app .rmi-segment{display:flex;background:#f0f3f8;padding:4px;border-radius:9px;gap:4px}
+#rmi-app .rmi-segment>label{position:relative;flex:1;text-align:center;cursor:pointer}
+#rmi-app .rmi-segment input{position:absolute;opacity:0;width:1px;height:1px}
+#rmi-app .rmi-segment span{display:block;padding:8px 10px;border-radius:6px;font-size:11px;color:var(--rmi-muted);font-weight:700}
+#rmi-app .rmi-segment input:checked+span{background:white;color:#254aca;box-shadow:0 1px 3px #17243a14}
+#rmi-app .rmi-segment input:focus-visible+span{outline:3px solid #7895ff;outline-offset:2px}
+#rmi-app .rmi-price-preview{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:15px;background:#f6f8fc;border:1px solid #e9eef6;border-radius:10px;margin:0 0 20px}
+#rmi-app .rmi-price-preview>span{color:var(--rmi-muted);font-size:11px}
+#rmi-app .rmi-price-preview strong{font-size:18px;color:#254aca;white-space:nowrap}
+#rmi-app .rmi-price-preview small{font-size:11px;font-weight:500;color:var(--rmi-muted)}
+#rmi-app .rmi-form-safety{display:flex;align-items:center;justify-content:center;gap:5px;font-size:10px;margin-top:12px}
+#rmi-app .rmi-form-safety svg{width:14px;height:14px;color:#08775e}
+#rmi-app .rmi-simulation-aside{display:grid;gap:16px}
+#rmi-app .rmi-assumptions{padding:24px}
+#rmi-app .rmi-assumptions ul{list-style:none;padding:0;margin:0 0 20px;display:grid;gap:14px}
+#rmi-app .rmi-assumptions li{display:flex;align-items:flex-start;gap:9px;font-size:12px;color:var(--rmi-muted)}
+#rmi-app .rmi-assumptions li svg{color:#08775e;width:16px;height:16px;margin-top:2px}
+#rmi-app .rmi-assumptions>p{font-size:12px;margin:9px 0 10px;line-height:1.9}
+#rmi-app .rmi-callout{border:1px solid #dce6fb;background:#f4f7ff;border-radius:10px;padding:13px 15px;font-size:11px;line-height:1.8}
+#rmi-app .rmi-callout strong{display:block;color:#294a83;font-size:11px}
+#rmi-app .rmi-callout p{font-size:11px;margin-top:3px}
+#rmi-app .rmi-callout small{display:block;color:var(--rmi-muted);font-size:10px;margin-top:4px}
+#rmi-app #rmi-story-context{margin-bottom:20px}
+#rmi-app .rmi-callout-amber{border-color:#f0d9aa;background:#fff8eb}
+#rmi-app .rmi-callout-amber strong{color:#895005}
+#rmi-app .rmi-error{font-size:12px;padding:11px 13px;background:#fff0f2;color:#a7253c;border:1px solid #f6c9d2;border-radius:8px;margin-bottom:15px}
+#rmi-app .rmi-results{scroll-margin-top:75px}
+#rmi-app .rmi-result-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-bottom:18px}
+#rmi-app .rmi-metric{padding:17px 19px}
+#rmi-app .rmi-metric>span{display:block;font-size:10px;color:var(--rmi-muted);margin-bottom:7px}
+#rmi-app .rmi-metric>strong{display:block;font-size:20px;font-weight:800;line-height:1.4;letter-spacing:-.4px}
+#rmi-app .rmi-metric>small{display:block;font-size:10px;color:var(--rmi-muted);margin-top:5px}
+#rmi-app .rmi-result-table-wrap{overflow:hidden}
+#rmi-app .rmi-result-table{width:100%;border-collapse:collapse;text-align:left;font-size:11px}
+#rmi-app .rmi-result-table th{background:#f6f8fc;padding:14px 17px;color:#52647d;font-size:10px;font-weight:700;border-bottom:1px solid var(--rmi-border)}
+#rmi-app .rmi-result-table td{padding:17px;vertical-align:middle;border-bottom:1px solid #edf1f7}
+#rmi-app .rmi-result-table tbody tr:last-child td{border-bottom:0}
+#rmi-app .rmi-result-table td>strong{display:block;font-size:12px;line-height:1.6}
+#rmi-app .rmi-result-table small{display:block;color:var(--rmi-muted);font-size:10px;margin-top:3px}
+#rmi-app .rmi-result-table .rmi-badge{font-size:9px;margin-top:6px}
+#rmi-app .rmi-cost-pair{display:flex;align-items:center;gap:7px;white-space:nowrap}
+#rmi-app .rmi-cost-pair>span{color:var(--rmi-muted)}
+#rmi-app .rmi-cost-pair>strong{font-size:12px;font-weight:800}
+#rmi-app .rmi-negative{color:#b13149}
+#rmi-app .rmi-positive{color:#08775e}
+#rmi-app .rmi-neutral{color:#52647d}
+#rmi-app #rmi-partial-note{margin-top:15px}
+#rmi-app .rmi-result-basis{display:flex;align-items:flex-start;gap:8px;margin:14px 2px 22px;font-size:10px}
+#rmi-app .rmi-result-basis>svg{width:15px;height:15px;color:var(--rmi-muted);margin-top:2px}
+#rmi-app .rmi-kachi-banner{display:flex;gap:15px;align-items:center;padding:23px;border-radius:14px;background:#203b80;color:white}
+#rmi-app .rmi-kachi-banner h3{font-size:15px;color:white}
+#rmi-app .rmi-kachi-banner p{font-size:11px;color:#d1def8;margin-top:4px}
+#rmi-app .rmi-kachi-banner>div:nth-child(2){flex:1}
+#rmi-app .rmi-kachi-icon{display:flex;align-items:center;justify-content:center;width:42px;height:42px;background:#ffffff14;border:1px solid #ffffff25;border-radius:12px}
+#rmi-app .rmi-market-note{display:flex;align-items:flex-start;gap:9px;border:1px solid var(--rmi-border);padding:12px 15px;background:white;border-radius:10px;font-size:11px;margin-bottom:20px}
+#rmi-app .rmi-market-note>svg{width:16px;height:16px;color:#62748e;margin-top:1px}
+#rmi-app .rmi-filters{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 20px}
+#rmi-app .rmi-filters>button{border:1px solid var(--rmi-border);background:white;color:#52647d;font-size:11px;font-weight:700;min-height:40px;padding:9px 13px;border-radius:8px}
+#rmi-app .rmi-filters>button[aria-pressed=true]{background:#17243a;color:white;border-color:#17243a}
+#rmi-app .rmi-news-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:stretch}
+#rmi-app .rmi-news-card{padding:20px;display:flex;flex-direction:column}
+#rmi-app .rmi-news-card-top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:17px}
+#rmi-app .rmi-news-card-top img{width:58px;height:58px;object-fit:cover;border-radius:10px}
+#rmi-app .rmi-news-card h3{font-size:14px;margin-bottom:10px;line-height:1.65}
+#rmi-app .rmi-news-card>p{font-size:11px;line-height:1.9;margin-bottom:15px}
+#rmi-app .rmi-news-source{font-size:10px;color:var(--rmi-muted);margin:0 0 13px}
+#rmi-app .rmi-news-context{font-size:11px;background:#f6f8fc;border:1px solid #e9eef6;border-radius:9px;padding:12px;margin-top:auto}
+#rmi-app .rmi-news-context strong{display:block;font-size:10px;color:#294a83;margin-bottom:5px}
+#rmi-app .rmi-news-context p{font-size:11px}
+#rmi-app .rmi-news-actions{display:flex;flex-direction:column;gap:2px;margin-top:15px}
+#rmi-app .rmi-news-actions .rmi-text-button{justify-content:center;font-size:10px}
+#rmi-app .rmi-market-footer{font-size:10px;margin-top:18px;text-align:center}
+#rmi-app .rmi-empty{padding:36px 22px;text-align:center;margin-top:20px}
+#rmi-app .rmi-empty>svg{height:30px;width:30px;color:#7890b3;margin:0 auto 12px}
+#rmi-app .rmi-empty p{font-size:12px;max-width:450px;margin:8px auto 15px}
+#rmi-app .rmi-dialog{margin:auto;border:1px solid var(--rmi-border);border-radius:18px;padding:0;width:min(560px,calc(100vw - 32px));max-height:85dvh;max-width:none;background:white;color:var(--rmi-ink);box-shadow:0 20px 80px #17243a33;overflow:auto}
+#rmi-app .rmi-dialog::backdrop{background:#17243a66;backdrop-filter:blur(3px)}
+#rmi-app .rmi-dialog-heading{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;padding:24px;border-bottom:1px solid var(--rmi-border);position:sticky;top:0;background:white;z-index:2}
+#rmi-app .rmi-dialog-heading h3{font-size:19px;margin-top:5px}
+#rmi-app .rmi-icon-button{display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1px solid var(--rmi-border);background:white;border-radius:9px;width:40px;height:40px;color:#52647d}
+#rmi-app .rmi-icon-button:hover{background:#f0f3f8}
+#rmi-app .rmi-dialog-body{padding:22px 24px;overflow-wrap:anywhere}
+#rmi-app .rmi-dialog-body>p{font-size:12px;line-height:1.9;margin-bottom:18px}
+#rmi-app .rmi-dialog-body>.rmi-badge{margin-bottom:12px}
+#rmi-app .rmi-source-item{border-top:1px solid #edf1f7;padding:17px 0}
+#rmi-app .rmi-source-item h4{font-size:12px;margin:9px 0 5px}
+#rmi-app .rmi-source-item p{font-size:11px;line-height:1.9}
+#rmi-app .rmi-dialog-footer{display:flex;justify-content:flex-end;padding:16px 24px;border-top:1px solid var(--rmi-border);background:white;position:sticky;bottom:0}
+#rmi-app .rmi-context{white-space:pre-wrap;font:inherit;font-size:11px;line-height:1.9;background:#f6f8fc;border:1px solid var(--rmi-border);border-radius:10px;padding:16px;margin:0 0 18px;color:#334766;overflow-wrap:anywhere}
+#rmi-app .rmi-detail-row{display:flex;justify-content:space-between;gap:16px;border-bottom:1px solid #edf1f7;padding:12px 0;font-size:12px}
+#rmi-app .rmi-detail-row>span{color:var(--rmi-muted)}
+#rmi-app .rmi-detail-row>strong{text-align:right}
+#rmi-app .rmi-detail-formula{font-size:12px;line-height:1.9;background:#f0f5ff;border-radius:10px;padding:14px;color:#294a83;margin:18px 0}
+#rmi-app .rmi-toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:90;max-width:calc(100vw - 32px);padding:12px 18px;border-radius:10px;background:#17243a;color:white;font-size:12px;box-shadow:0 4px 20px #17243a22}
+#rmi-app .rmi-sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(min-width:1600px){#rmi-app .rmi-signal-card h3{font-size:27px}}
+@media(max-width:1150px){#rmi-app .rmi-overview-grid{grid-template-columns:minmax(0,1.35fr) minmax(0,1fr)}#rmi-app .rmi-signal-card{padding:23px 22px 0}#rmi-app .rmi-signal-card h3{font-size:21px}#rmi-app .rmi-signal-foot{align-items:flex-start;flex-direction:column;gap:10px}#rmi-app .rmi-signal-foot>span{max-width:none}#rmi-app .rmi-news-grid{grid-template-columns:repeat(2,minmax(0,1fr))}#rmi-app .rmi-result-table th,#rmi-app .rmi-result-table td{padding:14px 11px}#rmi-app .rmi-cost-pair{flex-wrap:wrap;gap:3px}#rmi-app .rmi-kachi-banner{flex-wrap:wrap}#rmi-app .rmi-kachi-banner>.rmi-button{margin-left:57px}}
+@media(max-width:960px){#rmi-app .rmi-heading{align-items:flex-start}#rmi-app h2{font-size:24px}#rmi-app .rmi-heading>.rmi-button{font-size:11px;padding:9px 11px;flex-shrink:0}#rmi-app .rmi-overview-grid,#rmi-app .rmi-simulation-grid{grid-template-columns:1fr}#rmi-app .rmi-how-card{padding:22px}#rmi-app .rmi-steps{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:18px 0 10px}#rmi-app .rmi-steps li{flex-direction:column;gap:7px}#rmi-app .rmi-signal-foot{flex-direction:row;align-items:center;gap:15px}#rmi-app .rmi-signal-foot>span{max-width:200px}#rmi-app .rmi-simulation-aside{grid-template-columns:repeat(2,minmax(0,1fr))}#rmi-app .rmi-assumptions{padding:20px}#rmi-app .rmi-reference-note{flex-wrap:wrap}#rmi-app .rmi-reference-note>.rmi-text-button{margin-left:53px}}
+@media(max-width:640px){#rmi-app{font-size:13px}#rmi-app .rmi-heading{flex-direction:column;gap:12px;padding-bottom:16px}#rmi-app h2{font-size:24px;letter-spacing:-.7px;margin-top:9px}#rmi-app .rmi-heading>div>p{font-size:12px}#rmi-app .rmi-eyebrow{font-size:9px;letter-spacing:.8px;gap:8px}#rmi-app .rmi-heading>.rmi-button{min-height:38px;padding:8px 12px;font-size:11px}#rmi-app .rmi-tabbar{gap:0;justify-content:space-between}#rmi-app .rmi-tabbar>button{padding:12px 10px;font-size:12px}#rmi-app .rmi-demo-note{font-size:10px;padding:10px 11px;margin-bottom:18px}#rmi-app .rmi-signal-card{padding:20px 20px 0}#rmi-app .rmi-signal-card h3{font-size:22px}#rmi-app .rmi-signal-card h3 br{display:none}#rmi-app .rmi-signal-card>p{font-size:11px}#rmi-app .rmi-signal-top{margin-bottom:15px}#rmi-app .rmi-signal-foot{flex-direction:column;align-items:flex-start;gap:10px;margin:20px 0 18px}#rmi-app .rmi-signal-foot>span{max-width:none}#rmi-app .rmi-signal-source{font-size:9px}#rmi-app .rmi-steps{grid-template-columns:1fr;gap:15px}#rmi-app .rmi-steps li{flex-direction:row;gap:12px}#rmi-app .rmi-how-card{padding:20px}#rmi-app .rmi-section-heading{align-items:flex-start;margin-top:24px;gap:10px}#rmi-app .rmi-section-heading h3{font-size:16px}#rmi-app .rmi-section-heading p{font-size:11px}#rmi-app .rmi-section-heading>.rmi-badge{font-size:9px}#rmi-app .rmi-ingredient-grid{grid-template-columns:1fr;gap:12px}#rmi-app .rmi-ingredient{padding:17px;display:grid;grid-template-columns:38px minmax(0,1fr);column-gap:13px;row-gap:3px}#rmi-app .rmi-ingredient-icon{grid-row:1/3}#rmi-app .rmi-ingredient-name{margin:0;font-size:13px}#rmi-app .rmi-ingredient-meta{margin:0;font-size:10px}#rmi-app .rmi-card-rule{grid-column:1/-1;margin:10px 0 5px}#rmi-app .rmi-ingredient-bottom{grid-column:1/-1;font-size:11px}#rmi-app .rmi-reference-note{padding:17px;gap:12px;align-items:flex-start}#rmi-app .rmi-reference-note>div{min-width:0;flex-basis:calc(100% - 53px)}#rmi-app .rmi-reference-note>.rmi-text-button{margin-left:50px;min-height:32px}#rmi-app .rmi-reference-note h4{font-size:12px}#rmi-app .rmi-reference-note p{font-size:10px}#rmi-app .rmi-simulation-heading{display:block;margin-top:0}#rmi-app .rmi-simulation-heading>.rmi-badge{margin-top:10px}#rmi-app .rmi-form{padding:20px}#rmi-app .rmi-form-title{gap:10px}#rmi-app .rmi-form-title h3{font-size:14px}#rmi-app .rmi-simulation-aside{grid-template-columns:1fr}#rmi-app .rmi-assumptions{padding:20px}#rmi-app .rmi-price-preview{gap:10px;padding:13px}#rmi-app .rmi-price-preview strong{font-size:17px}#rmi-app .rmi-form-safety{font-size:9px}#rmi-app .rmi-result-metrics{grid-template-columns:1fr;gap:9px}#rmi-app .rmi-metric{display:grid;grid-template-columns:1fr auto;gap:0 12px;padding:14px 17px}#rmi-app .rmi-metric>span{margin:0;align-self:center;font-size:10px}#rmi-app .rmi-metric>strong{font-size:17px;grid-column:2;grid-row:1/3;text-align:right;align-self:center}#rmi-app .rmi-metric>small{margin-top:2px;font-size:9px}#rmi-app .rmi-result-table-wrap{border:0;border-radius:0;background:transparent;box-shadow:none;overflow:visible}#rmi-app .rmi-result-table,#rmi-app .rmi-result-table tbody{display:block;width:100%}#rmi-app .rmi-result-table thead{display:none}#rmi-app .rmi-result-table tr{display:block;background:white;border:1px solid var(--rmi-border);border-radius:13px;padding:5px 17px;margin-bottom:12px}#rmi-app .rmi-result-table td{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px 0;align-items:center}#rmi-app .rmi-result-table td:before{content:attr(data-label);font-size:10px;color:var(--rmi-muted)}#rmi-app .rmi-result-table td:first-child{display:block;padding:13px 0}#rmi-app .rmi-result-table td:first-child:before{display:none}#rmi-app .rmi-result-table td:first-child>strong{font-size:14px}#rmi-app .rmi-result-table td:last-child{display:flex;justify-content:flex-end;padding:4px 0 5px}#rmi-app .rmi-result-table td:last-child:before{display:none}#rmi-app .rmi-cost-pair{justify-content:flex-end;font-size:10px}#rmi-app .rmi-result-table td>div:not(:first-child){text-align:right}#rmi-app .rmi-kachi-banner{padding:20px;gap:12px}#rmi-app .rmi-kachi-banner>div:nth-child(2){flex-basis:calc(100% - 60px)}#rmi-app .rmi-kachi-banner>.rmi-button{margin:4px 0 0;width:100%;font-size:11px}#rmi-app .rmi-kachi-banner h3{font-size:14px}#rmi-app .rmi-kachi-banner p{font-size:10px}#rmi-app .rmi-news-grid{grid-template-columns:1fr;gap:14px}#rmi-app .rmi-news-card{padding:20px}#rmi-app .rmi-news-card h3{font-size:14px}#rmi-app .rmi-filters{gap:7px}#rmi-app .rmi-filters>button{font-size:10px;min-height:40px;padding:8px 10px}#rmi-app .rmi-dialog{width:calc(100vw - 24px);max-height:90dvh;border-radius:15px}#rmi-app .rmi-dialog-heading{padding:19px 17px}#rmi-app .rmi-dialog-heading h3{font-size:17px}#rmi-app .rmi-dialog-body{padding:18px 17px}#rmi-app .rmi-dialog-footer{padding:13px 17px}#rmi-app .rmi-context{padding:13px;font-size:10px}#rmi-app .rmi-toast{font-size:11px;bottom:15px}}
+@media(prefers-reduced-motion:reduce){#rmi-app *,#rmi-app *::before,#rmi-app *::after{transition:none!important;scroll-behavior:auto!important}}

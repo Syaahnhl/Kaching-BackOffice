@@ -11,6 +11,7 @@ use Kaching\BackOffice\Http\Controllers\ReservationController;
 use Kaching\BackOffice\Http\Controllers\ProcurementController;
 use Kaching\BackOffice\Http\Controllers\StaffController;
 use Kaching\BackOffice\Http\Controllers\ShiftController;
+use Kaching\BackOffice\Http\Controllers\RawMaterialIntelligenceController;
 use Kaching\BackOffice\Http\Middleware\EnforceBackOfficePermission;
 
 class BackOfficeServiceProvider extends ServiceProvider
@@ -37,6 +38,10 @@ class BackOfficeServiceProvider extends ServiceProvider
             __DIR__ . '/../resources/js' => public_path('vendor/backoffice/js'),
         ], 'kaching-backoffice-assets');
 
+        $this->publishes([
+            __DIR__ . '/../resources/rmi' => public_path('vendor/backoffice/rmi'),
+        ], 'kaching-backoffice-rmi-assets');
+
         $this->registerRoutes();
     }
 
@@ -58,6 +63,9 @@ class BackOfficeServiceProvider extends ServiceProvider
                 Route::get('/procurement', [ProcurementController::class, 'index'])->name('procurement');
                 Route::get('/staff', [StaffController::class, 'index'])->name('staff');
                 Route::get('/shifts', [ShiftController::class, 'index'])->name('shifts');
+                Route::get('/raw-material-intelligence', [RawMaterialIntelligenceController::class, 'index'])
+                    ->middleware(EnforceBackOfficePermission::class . ':view-raw-material-intelligence')
+                    ->name('raw-material-intelligence');
             });
     }
 }
