@@ -7,7 +7,8 @@ Preview v3 ini menguji apakah owner dapat menentukan tindakan harian dari layar 
 1. Buka [file HTML](previews/kaching-intelligence.html) di branch ini, lalu unduh lewat tombol **Download raw file**. Jika branch sudah di-checkout, buka file tersebut langsung dari folder `docs/previews`.
 2. Buka file yang diunduh di browser. Untuk mengecek tampilan ponsel dari PC, gunakan mode perangkat di Developer Tools pada ukuran 320 × 640 dan 390 × 844. Untuk desktop, gunakan ukuran 1440 × 900.
 3. Pilih **Selisih kas** dan **HPP transaksi belum lengkap**. Di ponsel, ketuk baris yang sama lagi untuk menutup rincian. Di desktop, pilihan baru mengganti isi panel kanan.
-4. Gunakan **Skenario preview** di bawah konten untuk mencoba kondisi perlu diperiksa, tidak ada temuan, dan data belum cukup.
+4. Buka **Kesiapan pembukuan** untuk melihat skor kelengkapan, bukti transaksi dan tautan PDF. Di **Analisis lanjutan**, buka **Harga acuan bahan baku** untuk melihat cuplikan referensi.
+5. Buka **Bantuan Kachi**, pilih topik, lalu coba salin pertanyaan. Gunakan **Skenario preview** di bagian bawah untuk mencoba tiga kondisi data.
 
 ## Fokus audit
 

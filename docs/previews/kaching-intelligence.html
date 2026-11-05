@@ -47,9 +47,6 @@
   .page-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 15px 17px; border: 1px solid var(--line); border-radius: 11px; background: #f8fafc; }
   .context { display: inline-flex; align-items: center; gap: 7px; color: var(--muted); font-size: 13px; }
   .context .icon { width: 16px; height: 16px; color: var(--blue); }
-  .section-nav { display: flex; gap: 24px; margin-top: 15px; border-bottom: 1px solid var(--line); }
-  .section-nav a { min-height: 44px; display: flex; align-items: center; color: var(--muted); font-weight: 650; }
-  .section-nav a:hover { color: var(--blue); }
   .work-area { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(280px, 1fr); gap: 18px; align-items: start; margin-top: 19px; }
   h2 { font-size: 18px; line-height: 1.35; letter-spacing: -.02em; }
   .heading { margin-bottom: 9px; }
@@ -79,21 +76,54 @@
   .notice p { margin-top: 3px; color: var(--muted); }
   .clear { color: var(--green); }
   .lower { margin-top: 21px; }
-  .score-row { display: grid; grid-template-columns: minmax(0, 1fr) 86px minmax(0, 1fr); align-items: baseline; gap: 12px; padding: 10px 14px; }
-  .score-row + .score-row { border-top: 1px solid var(--line); }
-  .score-row dt { font-weight: 700; }
-  .score-value { font-size: 16px; font-weight: 750; font-variant-numeric: tabular-nums; }
+  .score-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .score-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 6px 10px; padding: 12px 14px; }
+  .score-row + .score-row { border-left: 1px solid var(--line); }
+  .score-row dt { display: flex; align-items: center; gap: 7px; font-weight: 700; }
+  .score-row dt .icon { width: 16px; height: 16px; color: var(--blue); }
+  .score-value { font-size: 20px; font-weight: 750; font-variant-numeric: tabular-nums; white-space: nowrap; }
   .score-value span, .score-context { color: var(--muted); font-weight: 400; font-size: 12px; }
+  .score-context { grid-column: 1 / -1; }
   .score-context.warning { color: var(--amber); }
-  .tools { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .tools a { display: grid; align-content: start; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 8px; padding: 11px 14px; font-weight: 700; }
-  .tools a + a { border-left: 1px solid var(--line); }
+  .tools { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+  .tools a { display: grid; align-content: start; gap: 5px; padding: 11px 12px; font-weight: 700; }
   .tools small { color: var(--muted); font-weight: 400; font-size: 12px; }
-  .tools .icon { width: 16px; height: 16px; grid-column: 2; grid-row: 1; }
+  .tool-icons { display: flex; justify-content: space-between; align-items: center; gap: 6px; margin-bottom: 2px; }
+  .tool-icon { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 8px; background: #e7f6ee; color: #16654a; }
+  .tool-icon.menu { background: #e8f0ff; color: #2254bb; }
+  .tool-icon.risk { background: #fff2dc; color: #884d08; }
+  .tool-icon.scenario { background: #efebfc; color: #5d43a6; }
+  .tool-icons .icon { width: 16px; height: 16px; }
+  .tool-icons > .icon { color: var(--muted); }
   .bookkeeping { margin-top: 8px; }
   .bookkeeping summary { min-height: 44px; padding: 12px 14px; font-weight: 700; cursor: pointer; }
   .bookkeeping p { margin: 0 14px 4px; color: var(--muted); }
   .bookkeeping .destination { margin: 0 14px 8px; }
+  .readiness-scores { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 0 14px 12px; }
+  .readiness-scores div { padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px; background: #f8fafc; }
+  .readiness-scores dt { color: var(--muted); font-size: 12px; }
+  .readiness-scores dd { font-size: 16px; font-weight: 750; }
+  .readiness-scores small { color: var(--muted); font-size: 12px; font-weight: 400; }
+  .market-prices { margin-bottom: 0; }
+  .evidence.market-prices > div { grid-template-columns: minmax(0, 1fr) auto; }
+  .market-prices dd { text-align: right; }
+  .market-prices b { color: var(--ink); }
+  .market-prices small { display: block; color: var(--muted); }
+  .evidence { border-top: 1px solid var(--line); margin-bottom: 10px; }
+  .evidence div { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 4px 12px; padding: 10px 14px; }
+  .evidence div + div { border-top: 1px solid var(--line); }
+  .evidence dt { font-weight: 700; }
+  .evidence dd, .support-note { color: var(--muted); font-size: 13px; }
+  .advisor { border-color: #dcd5f2; background: #f6f3fd; }
+  .advisor summary { display: flex; align-items: center; gap: 9px; min-height: 48px; cursor: pointer; padding: 10px 14px; font-weight: 700; list-style: none; color: #493583; }
+  .advisor summary::-webkit-details-marker { display: none; }
+  .advisor summary .icon:last-child { margin-left: auto; }
+  .advisor[open] summary .icon:last-child { transform: rotate(180deg); }
+  .advisor-body { display: grid; gap: 9px; padding: 12px 14px; border-top: 1px solid var(--line); }
+  .advisor-body select, .advisor-body textarea { width: 100%; padding: 8px; font: inherit; color: var(--ink); background: #f8fafc; border: 1px solid var(--line); border-radius: 8px; }
+  .advisor-body textarea { min-height: 76px; resize: vertical; }
+  .advisor-body select, .advisor-body button { min-height: 44px; }
+  .advisor-body button { justify-self: start; padding: 8px 12px; color: var(--blue); background: var(--wash); border: 1px solid var(--line); border-radius: 8px; font-weight: 700; }
   .review { display: flex; align-items: center; flex-wrap: wrap; gap: 5px 10px; margin-top: 24px; padding-top: 12px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
   .review select { min-height: 44px; border: 1px solid var(--line); border-radius: 8px; padding: 6px 8px; color: var(--ink); background: var(--white); }
   dialog { width: min(340px, calc(100% - 26px)); border: 1px solid var(--line); border-radius: 11px; padding: 0; color: var(--ink); }
@@ -107,8 +137,9 @@
   }
   @media (max-width: 900px) {
     .work-area { grid-template-columns: 1fr; gap: 9px; }
-    .tools { grid-template-columns: 1fr; }
-    .tools a + a { border-left: 0; border-top: 1px solid var(--line); }
+    .tools { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .score-grid { grid-template-columns: 1fr; }
+    .score-row + .score-row { border-top: 1px solid var(--line); border-left: 0; }
   }
   @media (max-width: 900px) {
     .finding .select-icon { display: none; }
@@ -125,7 +156,7 @@
     main { padding: 13px 15px 25px; }
     .page-head { padding: 7px 9px; background: #f8fafc; }
     .page-head h1 { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
-    .section-nav { display: none; }
+    .evidence div { grid-template-columns: 1fr; }
     .context { margin: 0; }
     .work-area { margin-top: 15px; }
     .heading { margin-bottom: 7px; }
@@ -138,7 +169,7 @@
     .detail h3 { font-size: 14px; }
     .lower { margin-top: 18px; }
     .score-row { grid-template-columns: minmax(0, 1fr) auto; gap: 2px 8px; padding: 8px 12px; }
-    .score-context { grid-column: 1 / -1; }
+    .score-value { font-size: 17px; }
   }
 </style>
 </head>
@@ -153,6 +184,11 @@
   <symbol id="calendar" viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></symbol>
   <symbol id="cash" viewBox="0 0 24 24"><path d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/></symbol>
   <symbol id="receipt" viewBox="0 0 24 24"><path d="M5 4h14v16l-2-1.5-2.5 1.5-2.5-1.5L9.5 20 7 18.5 5 20zM9 9h6m-6 4h6"/></symbol>
+  <symbol id="trend" viewBox="0 0 24 24"><path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></symbol>
+  <symbol id="coin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v10m2.5-7.8C14 8.5 13 8 12 8c-1.6 0-3 .9-3 2s1.4 2 3 2 3 .9 3 2-1.4 2-3 2c-1 0-2-.5-2.5-1.2"/></symbol>
+  <symbol id="shield" viewBox="0 0 24 24"><path d="m12 3 8 3v5c0 5-3.6 8.3-8 10-4.4-1.7-8-5-8-10V6l8-3zM12 8v4m0 4h.01"/></symbol>
+  <symbol id="sliders" viewBox="0 0 24 24"><path d="M4 7h5m4 0h7M4 17h10m4 0h2"/><circle cx="11" cy="7" r="2"/><circle cx="16" cy="17" r="2"/></symbol>
+  <symbol id="chat" viewBox="0 0 24 24"><path d="M20 11.5a8 8 0 0 1-8 8H5l1.4-3.1A8 8 0 1 1 20 11.5zM9 11.5h.01m3 0h.01m3 0h.01"/></symbol>
 </svg>
 <aside class="sidebar" aria-label="BackOffice">
   <div class="brand"><span class="mark"><svg class="icon" aria-hidden="true"><use href="#bolt"/></svg></span>Kaching.</div>
@@ -178,11 +214,6 @@
       <h1>Ringkasan usaha</h1>
       <p class="context"><svg class="icon" aria-hidden="true"><use href="#calendar"/></svg>Periode evaluasi · 30 hari terakhir</p>
     </div>
-    <nav class="section-nav" aria-label="Bagian halaman">
-      <a href="#perlu-diperiksa">Ringkasan</a>
-      <a href="#analisis">Analisis lanjutan</a>
-      <a href="#pembukuan" data-scenario="attention">Pembukuan</a>
-    </nav>
     <div class="work-area">
       <section aria-labelledby="perlu-diperiksa">
         <h2 id="perlu-diperiksa" class="heading">Perlu diperiksa</h2>
@@ -231,25 +262,74 @@
     </div>
     <section class="lower" aria-labelledby="ringkasan-bisnis">
       <h2 id="ringkasan-bisnis" class="heading">Ringkasan bisnis</h2>
-      <dl class="panel" data-scenario="attention">
-        <div class="score-row"><dt>Kestabilan penjualan</dt><dd class="score-value">46 <span>/ 100</span></dd><dd class="score-context">Fluktuatif · 20 hari aktif berjualan</dd></div>
-        <div class="score-row"><dt>Kondisi keuntungan</dt><dd class="score-value">60 <span>/ 100</span></dd><dd class="score-context warning">Margin masih parsial</dd></div>
-        <div class="score-row"><dt>Pengelolaan kas</dt><dd class="score-value">23 <span>/ 100</span></dd><dd class="score-context warning">Ada selisih shift</dd></div>
+      <dl class="panel score-grid" data-scenario="attention">
+        <div class="score-row"><dt><svg class="icon" aria-hidden="true"><use href="#trend"/></svg>Kestabilan penjualan</dt><dd class="score-value">46 <span>/ 100</span></dd><dd class="score-context">Fluktuatif · 20 hari aktif berjualan</dd></div>
+        <div class="score-row"><dt><svg class="icon" aria-hidden="true"><use href="#coin"/></svg>Kondisi keuntungan</dt><dd class="score-value">60 <span>/ 100</span></dd><dd class="score-context warning">Margin masih parsial</dd></div>
+        <div class="score-row"><dt><svg class="icon" aria-hidden="true"><use href="#cash"/></svg>Pengelolaan kas</dt><dd class="score-value">23 <span>/ 100</span></dd><dd class="score-context warning">Ada selisih shift</dd></div>
       </dl>
       <p class="panel notice score-context" data-scenario="clear" hidden>Skor ringkasan belum disimulasikan untuk kondisi tanpa temuan.</p>
       <p class="panel notice score-context" data-scenario="incomplete" hidden>Skor belum tersedia untuk skenario dengan data terbatas.</p>
     </section>
+    <section class="lower" aria-labelledby="kesiapan">
+      <h2 id="kesiapan" class="heading">Kesiapan pembukuan</h2>
+      <details id="pembukuan" class="panel bookkeeping" data-scenario="attention">
+        <summary>46/100 · Tahap awal — lihat bukti</summary>
+        <dl class="readiness-scores">
+          <div><dt>Kelengkapan operasional</dt><dd>20 <small>/ 100</small></dd></div>
+          <div><dt>Kelengkapan data</dt><dd>90 <small>/ 100</small></dd></div>
+        </dl>
+        <dl class="evidence">
+          <div><dt>Penjualan</dt><dd>63 transaksi dengan omzet tercatat Rp468.000.</dd></div>
+          <div><dt>Pembayaran dan pembatalan</dt><dd>5 kanal pembayaran aktif. Rasio pembatalan transaksi 19,05%.</dd></div>
+          <div><dt>Tutup shift</dt><dd>3 shift tercatat tutup. Dua memiliki selisih kas fisik.</dd></div>
+          <div><dt>Pengeluaran</dt><dd>Rp320.000 tercatat dari 3 transaksi beban.</dd></div>
+          <div><dt>Harga modal katalog</dt><dd>15 dari 19 menu aktif memiliki biaya modal. HPP transaksi historis dihitung terpisah.</dd></div>
+          <div><dt>Catatan supplier</dt><dd>Identitas supplier belum tercatat pada pengeluaran operasional.</dd></div>
+          <div><dt>Konsistensi pembukuan</dt><dd>Sebagian. Dinilai dari hari aktif bertransaksi dan kedisiplinan tutup shift.</dd></div>
+        </dl>
+        <p class="support-note">Skor merangkum kesiapan data dan pencatatan usaha. Keputusan kredit melalui penilaian tersendiri oleh pemberi pinjaman.</p>
+        <a class="destination" href="https://kaching.id/copilot/financing-readiness/export">Unduh bukti finansial di BackOffice <svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a>
+      </details>
+      <p class="panel notice support-note" data-scenario="clear" hidden>Bukti pembukuan belum disimulasikan untuk kondisi tanpa temuan.</p>
+      <p class="panel notice support-note" data-scenario="incomplete" hidden>Bukti pembukuan belum tersedia pada skenario dengan data terbatas.</p>
+    </section>
     <section class="lower" aria-labelledby="analisis">
       <h2 id="analisis" class="heading">Analisis lanjutan</h2>
-      <nav class="panel tools" aria-label="Alat analisis">
-        <a href="https://kaching.id/copilot/raw-material-intelligence">Raw Material Intelligence <small>Dampak harga bahan ke biaya menu</small><svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a>
-        <a href="https://kaching.id/intelligence/risk-radar">Risk Radar <small>Sinyal risiko operasional</small><svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a>
-        <a href="https://kaching.id/intelligence/scenario">Scenario Simulator <small>Dampak perubahan biaya</small><svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a>
+      <nav class="tools" aria-label="Alat analisis">
+        <a class="panel" href="https://kaching.id/copilot/raw-material-intelligence"><span class="tool-icons" aria-hidden="true"><span class="tool-icon"><svg class="icon"><use href="#box"/></svg></span><svg class="icon"><use href="#arrow"/></svg></span>Raw Material Intelligence <small>Dampak harga bahan ke biaya menu</small></a>
+        <a class="panel" href="https://kaching.id/analysis/menu-performance"><span class="tool-icons" aria-hidden="true"><span class="tool-icon menu"><svg class="icon"><use href="#trend"/></svg></span><svg class="icon"><use href="#arrow"/></svg></span>Analisis Menu (DSS) <small>Penjualan dan profitabilitas menu</small></a>
+        <a class="panel" href="https://kaching.id/intelligence/risk-radar"><span class="tool-icons" aria-hidden="true"><span class="tool-icon risk"><svg class="icon"><use href="#shield"/></svg></span><svg class="icon"><use href="#arrow"/></svg></span>Risk Radar <small>Sinyal risiko operasional</small></a>
+        <a class="panel" href="https://kaching.id/intelligence/scenario"><span class="tool-icons" aria-hidden="true"><span class="tool-icon scenario"><svg class="icon"><use href="#sliders"/></svg></span><svg class="icon"><use href="#arrow"/></svg></span>Scenario Simulator <small>Dampak perubahan biaya</small></a>
       </nav>
-      <details id="pembukuan" class="panel bookkeeping" data-scenario="attention">
-        <summary>Kesiapan pembukuan · 46/100</summary>
-        <p>Tahap awal. Lengkapi data HPP dan catatan penutupan shift untuk memperkuat bukti pembukuan.</p>
-        <a class="destination" href="https://kaching.id/copilot/financing-readiness/export">Unduh bukti finansial di BackOffice <svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a>
+      <details class="panel bookkeeping">
+        <summary>Harga acuan bahan baku · data contoh</summary>
+        <p class="support-note">Cuplikan harga dari HTML referensi Kaching Intelligence. Tanggal pembaruan dan periode perubahan harga tidak tercantum.</p>
+        <dl class="evidence market-prices">
+          <div><dt>Cabai rawit merah</dt><dd><b>Rp68.000/kg</b><small>+8,4% pada acuan</small></dd></div>
+          <div><dt>Ayam broiler</dt><dd><b>Rp38.500/kg</b><small>+3,2% pada acuan</small></dd></div>
+          <div><dt>Bawang merah</dt><dd><b>Rp32.000/kg</b><small>Stabil pada acuan</small></dd></div>
+        </dl>
+      </details>
+    </section>
+    <section class="lower" aria-labelledby="kachi-title">
+      <h2 id="kachi-title" class="heading">Bantuan Kachi</h2>
+      <details class="panel advisor">
+        <summary><svg class="icon" aria-hidden="true"><use href="#chat"/></svg>Siapkan pertanyaan<svg class="icon" aria-hidden="true"><use href="#chevron"/></svg></summary>
+        <div class="advisor-body">
+          <p class="support-note">Pilih topik, lalu salin pertanyaan ke Kachi Copilot.</p>
+          <label for="kachi-topic">Topik</label>
+          <select id="kachi-topic">
+            <option value="kas">Selisih kas</option>
+            <option value="hpp">HPP transaksi</option>
+            <option value="bukti">Kesiapan pembukuan</option>
+            <option value="arus">Proyeksi arus kas 7 hari</option>
+            <option value="bahan">Dampak harga bahan baku</option>
+            <option value="prioritas">Langkah prioritas bisnis</option>
+          </select>
+          <textarea id="kachi-question" aria-label="Pertanyaan untuk Kachi" readonly></textarea>
+          <button id="copy-question" type="button">Salin pertanyaan</button>
+          <p id="copy-status" class="support-note" role="status"></p>
+        </div>
       </details>
     </section>
     <footer class="review" aria-label="Kontrol audit prototipe">
@@ -309,11 +389,35 @@
     renderDetails();
   });
   const mobileMenu = document.getElementById('mobile-navigation');
-  document.querySelector('.section-nav a[href="#pembukuan"]').addEventListener('click', () => {
-    document.getElementById('pembukuan').open = true;
-  });
   document.querySelector('.mobile-menu').addEventListener('click', () => mobileMenu.showModal());
   mobileMenu.querySelector('a[aria-current]').addEventListener('click', () => mobileMenu.close());
+  const topic = document.getElementById('kachi-topic');
+  const question = document.getElementById('kachi-question');
+  const copyStatus = document.getElementById('copy-status');
+  const prompts = {
+    kas: 'Apa yang perlu saya periksa saat kas fisik berbeda dari kas tercatat pada penutupan shift?',
+    hpp: 'Bagaimana saya menelusuri transaksi yang HPP-nya belum tercatat sebelum menilai margin?',
+    bukti: 'Catatan apa yang perlu saya lengkapi untuk menyiapkan bukti pembukuan usaha?',
+    arus: 'Berdasarkan kas tercatat, pemasukan, dan pengeluaran yang sudah dijadwalkan, seperti apa proyeksi arus kas 7 hari ke depan? Jelaskan asumsi dan data yang masih kurang.',
+    bahan: 'Bagaimana perubahan harga bahan dari supplier memengaruhi biaya resep dan margin menu saya? Data harga beli dan resep apa yang perlu saya siapkan untuk mengujinya?',
+    prioritas: 'Dari data toko yang tersedia, tindakan apa yang perlu saya dahulukan hari ini? Sertakan alasan, periode data, dan cara memeriksanya.'
+  };
+  function renderQuestion() {
+    question.value = prompts[topic.value];
+    copyStatus.textContent = '';
+  }
+  topic.addEventListener('change', renderQuestion);
+  document.getElementById('copy-question').addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(question.value);
+      copyStatus.textContent = 'Pertanyaan disalin.';
+    } catch {
+      question.focus();
+      question.select();
+      copyStatus.textContent = 'Pertanyaan dipilih. Gunakan perintah salin pada perangkat Anda.';
+    }
+  });
+  renderQuestion();
   renderDetails();
 </script>
 </body>
