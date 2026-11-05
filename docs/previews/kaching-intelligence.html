@@ -3,279 +3,318 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Kaching Intelligence — Preview UI</title>
+<title>Kaching Intelligence — Preview v3</title>
 <style>
   :root {
     color-scheme: light;
-    --ink: #16233a;
-    --muted: #52647e;
-    --canvas: #f4f7fb;
-    --border: #dde5f0;
-    --blue: #2358df;
-    --blue-dark: #1947c2;
-    --blue-soft: #eaf1ff;
-    --amber: #854800;
-    --amber-soft: #fff1da;
-    --green: #126749;
-    --green-soft: #e4f6ee;
+    --ink: #172438;
+    --muted: #536680;
+    --line: #dce4ef;
+    --canvas: #f1f5f9;
+    --white: #fff;
+    --blue: #1e4cbd;
+    --wash: #eff6ff;
+    --amber: #884d08;
+    --amber-wash: #fffbeb;
+    --green: #16654a;
   }
   * { box-sizing: border-box; }
   [hidden] { display: none !important; }
-  body { margin: 0; background: var(--canvas); color: var(--ink); font: 14px/1.5 "Plus Jakarta Sans", "Segoe UI", system-ui, sans-serif; }
+  html { scroll-padding-top: 84px; }
+  body { margin: 0; color: var(--ink); background: var(--canvas); font: 14px/1.5 "Plus Jakarta Sans", "Segoe UI", system-ui, sans-serif; }
+  h1, h2, h3, p, ul, dl, dd { margin: 0; }
   button, select { font: inherit; }
   button { cursor: pointer; }
-  a { color: inherit; text-decoration: none; }
-  a:focus-visible, button:focus-visible, select:focus-visible, summary:focus-visible { outline: 3px solid #4778ff; outline-offset: 3px; }
-  h1, h2, h3, p { margin: 0; }
+  a { color: var(--blue); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  :is(button, a, summary, select):focus-visible { outline: 3px solid #3f69da; outline-offset: 3px; }
   svg { flex: none; }
-  .icon { width: 19px; height: 19px; stroke: currentColor; fill: none; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
-  .sidebar { position: fixed; inset: 0 auto 0 0; width: 232px; display: flex; flex-direction: column; padding: 22px 16px 16px; background: #fff; border-right: 1px solid var(--border); overflow: auto; }
-  .brand { display: flex; align-items: center; gap: 10px; color: #142139; font-size: 24px; font-weight: 800; letter-spacing: -.055em; }
-  .brand em { color: var(--blue); font-style: normal; }
-  .mark { display: grid; width: 34px; height: 34px; border-radius: 11px; background: var(--blue); place-items: center; color: #fff; }
-  .sidebar .brand { margin: 0 7px 38px; }
-  .nav-label { margin: 20px 10px 7px; font-size: 10px; letter-spacing: .14em; font-weight: 800; color: #61738f; }
-  .nav-row { display: flex; align-items: center; gap: 11px; padding: 10px; min-height: 42px; color: var(--muted); border-radius: 10px; font-size: 13px; font-weight: 600; }
-  .nav-row:hover { background: var(--canvas); }
-  .nav-row[aria-current] { color: #1643ac; background: var(--blue-soft); font-weight: 800; }
-  .sidebar-footer { display: flex; gap: 10px; align-items: center; margin-top: auto; padding: 22px 8px 4px; font-size: 12px; color: var(--muted); }
-  .avatar { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 10px; background: var(--blue-soft); color: var(--blue-dark); font-weight: 800; }
-  .sidebar-footer strong { display: block; color: var(--ink); }
+  .icon { width: 19px; height: 19px; stroke: currentColor; fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+  .sidebar { position: fixed; inset: 0 auto 0 0; z-index: 3; width: 232px; background: var(--white); border-right: 1px solid var(--line); }
+  .brand { display: flex; align-items: center; gap: 9px; padding: 16px 20px; height: 65px; border-bottom: 1px solid var(--line); font-size: 22px; font-weight: 800; letter-spacing: -.05em; }
+  .mark { display: grid; place-items: center; width: 32px; height: 32px; background: #2859db; color: #fff; border-radius: 9px; }
+  .nav { padding: 14px 12px; }
+  .nav small { display: block; margin: 15px 10px 4px; color: var(--muted); font-weight: 700; }
+  .nav a { display: flex; align-items: center; gap: 10px; min-height: 44px; padding: 6px 10px; border-radius: 8px; color: var(--muted); font-weight: 600; }
+  .nav a[aria-current] { background: var(--wash); color: var(--blue); font-weight: 750; }
   .shell { margin-left: 232px; }
-  .topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 32px; min-height: 66px; background: #fff; border-bottom: 1px solid var(--border); }
-  .crumb { display: flex; align-items: center; gap: 9px; color: var(--muted); font-size: 13px; }
-  .crumb strong { color: var(--ink); }
-  .mobile-brand { display: none; }
-  .demo { display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; min-height: 36px; padding: 6px 11px; border: 1px solid var(--border); border-radius: 9px; background: #fff; color: var(--blue-dark); font-size: 12px; font-weight: 700; }
-  .demo:hover { background: var(--blue-soft); }
-  main { max-width: 1280px; margin: 0 auto; padding: 27px 32px 36px; }
-  .intro { position: relative; isolation: isolate; overflow: hidden; display: flex; align-items: flex-end; justify-content: space-between; gap: 18px; padding: 25px 26px; background: linear-gradient(115deg,#fff 0%,#fff 46%,#e9f0ff 100%); border: 1px solid #d9e5fa; border-radius: 19px; }
-  .intro::after { content: ""; position: absolute; z-index: -1; right: -34px; top: -82px; width: 255px; height: 255px; border: 1px solid #c7d9fc; border-radius: 50%; box-shadow: 0 0 0 22px #dce8ff7d, 0 0 0 45px #e2ecff80; pointer-events: none; }
-  .eyebrow { display: flex; align-items: center; gap: 7px; color: #204dab; font-weight: 800; font-size: 10px; letter-spacing: .13em; text-transform: uppercase; }
-  h1 { margin: 5px 0; font-size: clamp(27px, 3vw, 36px); line-height: 1.12; letter-spacing: -.045em; }
-  .intro p, .section-note, .copy { color: var(--muted); }
-  .context { display: inline-flex; align-items: center; align-self: flex-end; gap: 7px; flex: none; border: 1px solid #cddcf5; border-radius: 10px; padding: 8px 10px; color: #244879; background: #f7faff; font-size: 12px; font-weight: 700; }
-  .context .icon { width: 16px; height: 16px; }
-  section { margin-top: 24px; }
-  .section-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 12px; }
-  h2 { font-size: 21px; line-height: 1.25; letter-spacing: -.03em; }
-  .section-note { font-size: 12px; margin-top: 4px; }
-  .pill { display: inline-flex; align-items: center; gap: 6px; padding: 4px 9px; border-radius: 999px; font-size: 11px; font-weight: 750; color: var(--blue-dark); background: var(--blue-soft); }
-  .pill.warning { color: var(--amber); background: var(--amber-soft); }
-  .pill.success { color: var(--green); background: var(--green-soft); }
-  .pill.neutral { color: #475c78; background: #eef3fa; }
-  .actions, .scores, .tools { display: grid; gap: 12px; }
-  .actions { grid-template-columns: repeat(2,minmax(0,1fr)); }
-  .scores, .tools { grid-template-columns: repeat(3,minmax(0,1fr)); }
-  .card { background: #fff; border: 1px solid var(--border); border-radius: 15px; box-shadow: 0 2px 5px #18335c05; }
-  .action { display: flex; flex-direction: column; align-items: flex-start; padding: 17px; gap: 9px; }
-  .action.first { border-color: #acc6f8; box-shadow: inset 0 2px 0 #5480ed; }
-  .action-top { display: flex; align-items: center; justify-content: space-between; width: 100%; gap: 8px; }
-  .tile { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 10px; background: var(--blue-soft); color: var(--blue-dark); flex: none; }
-  .tile.amber { background: var(--amber-soft); color: var(--amber); }
-  h3 { font-size: 17px; line-height: 1.25; letter-spacing: -.02em; }
-  .action p { font-size: 13px; }
-  .action strong { color: var(--ink); }
-  .cta { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 8px 13px; border: 1px solid #d0ddf4; border-radius: 9px; background: #f4f8ff; color: #1947ba; font-size: 13px; font-weight: 750; }
-  .cta:hover { background: var(--blue-soft); }
-  .cta.primary { color: #fff; background: var(--blue); border-color: var(--blue); }
-  .cta.primary:hover { background: var(--blue-dark); }
-  .cta .icon { width: 16px; height: 16px; }
-  .action .cta { margin-top: auto; }
-  .notice { display: flex; align-items: flex-start; gap: 13px; padding: 16px; }
-  .notice p { margin-top: 4px; }
-  .score { padding: 14px 15px; }
-  .score h3 { font-size: 13px; }
-  .score-line { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px; margin-top: 6px; }
-  .score-line b { font-size: 25px; letter-spacing: -.055em; }
-  .score-line small { color: var(--muted); font-size: 11px; }
-  .score p { margin-top: 4px; color: var(--muted); font-size: 12px; }
-  .score-placeholder { padding: 15px; color: var(--muted); }
-  .tool { display: flex; align-items: flex-start; gap: 10px; padding: 13px; }
-  .tool:hover { border-color: #a8bff1; }
-  .tool h3 { font-size: 13px; }
-  .tool p { color: var(--muted); margin-top: 3px; font-size: 12px; }
-  .tool .icon:last-child { margin-left: auto; width: 15px; height: 15px; color: var(--blue-dark); }
-  .ready { margin-top: 10px; }
-  .ready summary { cursor: pointer; padding: 14px; font-weight: 750; }
-  .ready p { padding: 0 14px 14px; color: var(--muted); }
-  footer { margin-top: 22px; color: var(--muted); font-size: 11px; }
-  dialog { width: min(480px, calc(100% - 28px)); padding: 0; border: 1px solid var(--border); border-radius: 17px; color: var(--ink); box-shadow: 0 20px 80px #172d5e35; }
-  dialog::backdrop { background: #14264680; }
-  .dialog-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 16px 19px; border-bottom: 1px solid var(--border); }
-  .dialog-head button { min-width: 36px; min-height: 36px; border: 0; border-radius: 9px; color: var(--ink); background: var(--canvas); font-size: 22px; }
-  .dialog-content { display: grid; gap: 12px; padding: 18px 19px; }
-  .dialog-content h3 { font-size: 15px; }
-  .fact { padding: 12px; border-radius: 10px; background: var(--blue-soft); color: #194094; }
-  .detail-meta { color: var(--muted); font-size: 12px; }
-  label { font-weight: 700; }
-  select { width: 100%; min-height: 44px; padding: 8px 10px; border: 1px solid #a9bad4; border-radius: 8px; background: #fff; color: var(--ink); }
-  @media (max-width: 1040px) {
-    .sidebar { width: 192px; }
-    .shell { margin-left: 192px; }
-    .topbar, main { padding-inline: 22px; }
+  .topbar { position: sticky; top: 0; z-index: 2; min-height: 65px; display: flex; align-items: center; justify-content: space-between; padding: 8px 28px; gap: 12px; background: var(--white); border-bottom: 1px solid var(--line); }
+  .product-title { color: var(--ink); font-size: 15px; font-weight: 750; }
+  .context-label { color: var(--muted); font-size: 12px; white-space: nowrap; }
+  .mobile-menu { display: none; align-items: center; justify-content: center; width: 44px; height: 44px; padding: 0; border: 0; border-radius: 8px; background: var(--white); color: var(--ink); }
+  main { max-width: 1232px; margin-inline: auto; padding: 26px 28px 32px; }
+  h1 { font-size: 29px; line-height: 1.2; letter-spacing: -.035em; }
+  .page-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 15px 17px; border: 1px solid var(--line); border-radius: 11px; background: #f8fafc; }
+  .context { display: inline-flex; align-items: center; gap: 7px; color: var(--muted); font-size: 13px; }
+  .context .icon { width: 16px; height: 16px; color: var(--blue); }
+  .section-nav { display: flex; gap: 24px; margin-top: 15px; border-bottom: 1px solid var(--line); }
+  .section-nav a { min-height: 44px; display: flex; align-items: center; color: var(--muted); font-weight: 650; }
+  .section-nav a:hover { color: var(--blue); }
+  .work-area { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(280px, 1fr); gap: 18px; align-items: start; margin-top: 19px; }
+  h2 { font-size: 18px; line-height: 1.35; letter-spacing: -.02em; }
+  .heading { margin-bottom: 9px; }
+  .panel { background: var(--white); border: 1px solid var(--line); border-radius: 11px; box-shadow: 0 1px 2px #17243808; }
+  .findings { list-style: none; padding: 0; }
+  .findings li + li { border-top: 1px solid var(--line); }
+  .finding { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 10px; width: 100%; min-height: 70px; border: 0; background: transparent; padding: 11px 14px; text-align: left; color: var(--ink); }
+  .finding strong { display: block; font-size: 15px; }
+  .finding small { display: block; margin-top: 3px; color: var(--muted); font-size: 13px; line-height: 1.4; }
+  .finding small b { color: var(--ink); }
+  .finding .icon { width: 17px; height: 17px; color: var(--blue); }
+  .finding-mark { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 9px; color: var(--blue); background: #dbeafe; }
+  .finding-mark.cash { color: var(--amber); background: #fef3c7; }
+  .finding-mark .icon { color: inherit; }
+  .finding .expand-icon { display: none; }
+  .finding:hover, .finding[aria-expanded="true"] { background: var(--wash); }
+  .findings li:first-child .finding { border-radius: 10px 10px 0 0; }
+  .findings li:last-child .finding { border-radius: 0 0 10px 10px; }
+  .detail { padding: 15px; }
+  .detail h3 { font-size: 16px; line-height: 1.3; }
+  .detail p { color: var(--muted); margin-top: 7px; font-size: 13px; }
+  .detail .scope { margin-top: 10px; padding: 8px 10px; border-left: 2px solid #a5c1ff; border-radius: 0 6px 6px 0; background: var(--wash); font-size: 12px; }
+  #detail-kas .scope { background: var(--amber-wash); border-color: #e5b767; }
+  .destination { display: inline-flex; align-items: center; gap: 7px; min-height: 44px; margin-top: 6px; font-weight: 700; }
+  .destination .icon { width: 16px; height: 16px; }
+  .notice { padding: 15px; }
+  .notice p { margin-top: 3px; color: var(--muted); }
+  .clear { color: var(--green); }
+  .lower { margin-top: 21px; }
+  .score-row { display: grid; grid-template-columns: minmax(0, 1fr) 86px minmax(0, 1fr); align-items: baseline; gap: 12px; padding: 10px 14px; }
+  .score-row + .score-row { border-top: 1px solid var(--line); }
+  .score-row dt { font-weight: 700; }
+  .score-value { font-size: 16px; font-weight: 750; font-variant-numeric: tabular-nums; }
+  .score-value span, .score-context { color: var(--muted); font-weight: 400; font-size: 12px; }
+  .score-context.warning { color: var(--amber); }
+  .tools { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .tools a { display: grid; align-content: start; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 8px; padding: 11px 14px; font-weight: 700; }
+  .tools a + a { border-left: 1px solid var(--line); }
+  .tools small { color: var(--muted); font-weight: 400; font-size: 12px; }
+  .tools .icon { width: 16px; height: 16px; grid-column: 2; grid-row: 1; }
+  .bookkeeping { margin-top: 8px; }
+  .bookkeeping summary { min-height: 44px; padding: 12px 14px; font-weight: 700; cursor: pointer; }
+  .bookkeeping p { margin: 0 14px 4px; color: var(--muted); }
+  .bookkeeping .destination { margin: 0 14px 8px; }
+  .review { display: flex; align-items: center; flex-wrap: wrap; gap: 5px 10px; margin-top: 24px; padding-top: 12px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
+  .review select { min-height: 44px; border: 1px solid var(--line); border-radius: 8px; padding: 6px 8px; color: var(--ink); background: var(--white); }
+  dialog { width: min(340px, calc(100% - 26px)); border: 1px solid var(--line); border-radius: 11px; padding: 0; color: var(--ink); }
+  dialog::backdrop { background: #18294677; }
+  .menu-head { display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; border-bottom: 1px solid var(--line); }
+  .menu-head button { width: 44px; height: 44px; border: 0; border-radius: 8px; font-size: 20px; background: var(--canvas); }
+  @media (max-width: 1050px) {
+    .sidebar { width: 194px; }
+    .shell { margin-left: 194px; }
+    main, .topbar { padding-inline: 20px; }
+  }
+  @media (max-width: 900px) {
+    .work-area { grid-template-columns: 1fr; gap: 9px; }
+    .tools { grid-template-columns: 1fr; }
+    .tools a + a { border-left: 0; border-top: 1px solid var(--line); }
+  }
+  @media (max-width: 900px) {
+    .finding .select-icon { display: none; }
+    .finding .expand-icon { display: block; }
+    .finding[aria-expanded="true"] .expand-icon { transform: rotate(180deg); }
   }
   @media (max-width: 760px) {
-    .sidebar, .crumb { display: none; }
+    html { scroll-padding-top: 66px; }
+    .sidebar { display: none; }
     .shell { margin-left: 0; }
-    .mobile-brand { display: flex; font-size: 21px; }
-    .mobile-brand .mark { width: 30px; height: 30px; }
-    .topbar { min-height: 57px; padding: 9px 16px; }
-    main { padding: 15px 14px 24px; }
-    .intro { display: grid; gap: 12px; padding: 17px 16px; }
-    .intro p { font-size: 12px; }
-    .context { justify-self: start; padding: 5px 8px; font-size: 11px; }
-    section { margin-top: 19px; }
-    h2 { font-size: 19px; }
-    .actions, .scores, .tools { grid-template-columns: minmax(0,1fr); gap: 9px; }
-    .action { padding: 13px; gap: 7px; }
-    .action .cta { width: 100%; margin-top: 2px; }
-    .score { padding: 12px 14px; }
+    .mobile-menu { display: inline-flex; margin-left: -9px; }
+    .topbar { justify-content: flex-start; min-height: 57px; gap: 6px; padding: 6px 15px; }
+    .topbar .context-label { margin-left: auto; font-size: 11px; }
+    main { padding: 13px 15px 25px; }
+    .page-head { padding: 7px 9px; background: #f8fafc; }
+    .page-head h1 { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+    .section-nav { display: none; }
+    .context { margin: 0; }
+    .work-area { margin-top: 15px; }
+    .heading { margin-bottom: 7px; }
+    h2 { font-size: 16px; }
+    .finding { gap: 9px; padding: 10px 12px; min-height: 67px; }
+    .finding-mark { width: 31px; height: 31px; }
+    .finding strong { font-size: 14px; }
+    .finding small { font-size: 12px; }
+    .detail { padding: 11px 12px 7px; border: 0; border-top: 1px solid var(--line); border-radius: 0; }
+    .detail h3 { font-size: 14px; }
+    .lower { margin-top: 18px; }
+    .score-row { grid-template-columns: minmax(0, 1fr) auto; gap: 2px 8px; padding: 8px 12px; }
+    .score-context { grid-column: 1 / -1; }
   }
 </style>
 </head>
 <body>
 <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="bolt" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 10-12h-7l1-8z"/></symbol>
-  <symbol id="grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></symbol>
-  <symbol id="chart" viewBox="0 0 24 24"><path d="M3 4v16h18M7 15l4-4 4 2 5-6"/></symbol>
-  <symbol id="box" viewBox="0 0 24 24"><path d="m12 3 9 5v8l-9 5-9-5V8l9-5zM3 8l9 5 9-5m-9 5v8"/></symbol>
-  <symbol id="wallet" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M21 9h-5a3 3 0 0 0 0 6h5m-4-3h.01"/></symbol>
-  <symbol id="calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4m10-4v4M3 10h18"/></symbol>
+  <symbol id="menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
   <symbol id="arrow" viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6"/></symbol>
-  <symbol id="file" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6zm8 0v5h4M9 12h6m-6 4h6"/></symbol>
-  <symbol id="shield" viewBox="0 0 24 24"><path d="m12 3 8 3v5c0 5-3.6 8.3-8 10-4.4-1.7-8-5-8-10V6l8-3z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></symbol>
+  <symbol id="chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+  <symbol id="grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></symbol>
+  <symbol id="box" viewBox="0 0 24 24"><path d="m12 3 9 5v8l-9 5-9-5V8l9-5zM3 8l9 5 9-5m-9 5v8"/></symbol>
+  <symbol id="calendar" viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></symbol>
+  <symbol id="cash" viewBox="0 0 24 24"><path d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/></symbol>
+  <symbol id="receipt" viewBox="0 0 24 24"><path d="M5 4h14v16l-2-1.5-2.5 1.5-2.5-1.5L9.5 20 7 18.5 5 20zM9 9h6m-6 4h6"/></symbol>
 </svg>
-<aside class="sidebar" aria-label="Navigasi BackOffice">
-  <a class="brand" href="#main"><span class="mark"><svg class="icon" aria-hidden="true"><use href="#bolt"/></svg></span><span>Kaching<em>.</em></span></a>
-  <div class="nav-label">BACKOFFICE</div>
-  <a class="nav-row" href="https://kaching.id/"><svg class="icon" aria-hidden="true"><use href="#grid"/></svg> Dashboard</a>
-  <div class="nav-label">INTELLIGENCE</div>
-  <a class="nav-row" href="#main" aria-current="page"><svg class="icon" aria-hidden="true"><use href="#bolt"/></svg> Kaching Intelligence</a>
-  <a class="nav-row" href="https://kaching.id/copilot/raw-material-intelligence"><svg class="icon" aria-hidden="true"><use href="#box"/></svg> Raw Material Intel</a>
-  <a class="nav-row" href="https://kaching.id/analysis/menu-performance"><svg class="icon" aria-hidden="true"><use href="#chart"/></svg> Analisis Menu</a>
-  <div class="sidebar-footer"><span class="avatar">K</span><span><strong>Kaching BackOffice</strong>Preview desain</span></div>
+<aside class="sidebar" aria-label="BackOffice">
+  <div class="brand"><span class="mark"><svg class="icon" aria-hidden="true"><use href="#bolt"/></svg></span>Kaching.</div>
+  <nav class="nav" aria-label="Navigasi BackOffice">
+    <a href="https://kaching.id/"><svg class="icon" aria-hidden="true"><use href="#grid"/></svg>Dashboard</a>
+    <small>OPERASIONAL</small>
+    <a href="https://kaching.id/menus">Kelola Menu</a>
+    <a href="https://kaching.id/shifts">Riwayat Shift Kasir</a>
+    <small>KEUANGAN</small>
+    <a href="#utama" aria-current="page"><svg class="icon" aria-hidden="true"><use href="#bolt"/></svg>Kaching Intelligence</a>
+    <a href="https://kaching.id/analysis/menu-performance">Analisis Menu (DSS)</a>
+    <a href="https://kaching.id/copilot/raw-material-intelligence"><svg class="icon" aria-hidden="true"><use href="#box"/></svg>Raw Material Intel</a>
+  </nav>
 </aside>
 <div class="shell">
   <header class="topbar">
-    <div class="crumb">BackOffice <span aria-hidden="true">/</span> <strong>Kaching Intelligence</strong></div>
-    <a class="brand mobile-brand" href="#main"><span class="mark"><svg class="icon" aria-hidden="true"><use href="#bolt"/></svg></span><span>Kaching<em>.</em></span></a>
-    <button class="demo" type="button" data-open="demo-dialog"><span aria-hidden="true">●</span> Data contoh <span aria-hidden="true">⌄</span></button>
+    <button type="button" class="mobile-menu" aria-label="Buka menu BackOffice" aria-haspopup="dialog"><svg class="icon" aria-hidden="true"><use href="#menu"/></svg></button>
+    <span class="product-title">Kaching Intelligence</span>
+    <span class="context-label">Data contoh</span>
   </header>
-  <main id="main">
-    <div class="intro">
-      <div>
-        <div class="eyebrow"><svg class="icon" aria-hidden="true"><use href="#bolt"/></svg> Intelligence</div>
-        <h1>Kaching Intelligence</h1>
-        <p>Temukan tindakan yang perlu didahulukan hari ini.</p>
-      </div>
-      <div class="context"><svg class="icon" aria-hidden="true"><use href="#calendar"/></svg> Evaluasi 30 hari terakhir</div>
+  <main id="utama">
+    <div class="page-head">
+      <h1>Ringkasan usaha</h1>
+      <p class="context"><svg class="icon" aria-hidden="true"><use href="#calendar"/></svg>Periode evaluasi · 30 hari terakhir</p>
     </div>
-    <section aria-labelledby="prioritas">
-      <div class="section-head">
-        <div><h2 id="prioritas">Prioritas hari ini</h2><p class="section-note">Tindakan berdasarkan hasil pemeriksaan usaha.</p></div>
-        <span class="pill neutral" id="state-label" aria-live="polite">2 tindakan</span>
+    <nav class="section-nav" aria-label="Bagian halaman">
+      <a href="#perlu-diperiksa">Ringkasan</a>
+      <a href="#analisis">Analisis lanjutan</a>
+      <a href="#pembukuan" data-scenario="attention">Pembukuan</a>
+    </nav>
+    <div class="work-area">
+      <section aria-labelledby="perlu-diperiksa">
+        <h2 id="perlu-diperiksa" class="heading">Perlu diperiksa</h2>
+        <ul class="panel findings" data-scenario="attention">
+          <li>
+            <button class="finding" type="button" data-detail="kas" aria-expanded="false" aria-controls="detail-kas">
+              <span class="finding-mark cash" aria-hidden="true"><svg class="icon"><use href="#cash"/></svg></span>
+              <span><strong>Selisih kas</strong><small><b>2 dari 3 shift</b> berselisih lebih dari Rp10.000.</small></span>
+              <span aria-hidden="true"><svg class="icon select-icon"><use href="#arrow"/></svg><svg class="icon expand-icon"><use href="#chevron"/></svg></span>
+            </button>
+            <div id="slot-kas"></div>
+          </li>
+          <li>
+            <button class="finding" type="button" data-detail="hpp" aria-expanded="false" aria-controls="detail-hpp">
+              <span class="finding-mark" aria-hidden="true"><svg class="icon"><use href="#receipt"/></svg></span>
+              <span><strong>HPP transaksi belum lengkap</strong><small><b>78,7% item penjualan</b> belum memiliki HPP.</small></span>
+              <span aria-hidden="true"><svg class="icon select-icon"><use href="#arrow"/></svg><svg class="icon expand-icon"><use href="#chevron"/></svg></span>
+            </button>
+            <div id="slot-hpp"></div>
+          </li>
+        </ul>
+        <div class="panel notice" data-scenario="clear" hidden>
+          <strong class="clear">Tidak ada temuan pada pemeriksaan ini</strong>
+          <p>Pemeriksaan selisih kas dan kelengkapan HPP untuk periode contoh sudah selesai.</p>
+        </div>
+        <div class="panel notice" data-scenario="incomplete" hidden>
+          <strong>Data belum cukup</strong>
+          <p>Catatan tutup shift dan HPP transaksi belum tersedia untuk pemeriksaan.</p>
+        </div>
+      </section>
+      <div id="detail-dock" data-scenario="attention">
+        <h2 class="heading">Rincian temuan</h2>
+        <section id="detail-kas" class="panel detail" aria-labelledby="judul-kas" hidden>
+          <h3 id="judul-kas">Periksa penutupan shift</h3>
+          <p>Bandingkan kas fisik dan kas tercatat pada shift yang berselisih.</p>
+          <p class="scope">Riwayat mencakup semua selisih. Temuan di sini menghitung selisih di atas Rp10.000.</p>
+          <a class="destination" href="https://kaching.id/shifts?range=30days&amp;status=selisih">Buka riwayat shift berselisih <svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a>
+        </section>
+        <section id="detail-hpp" class="panel detail" aria-labelledby="judul-hpp" hidden>
+          <h3 id="judul-hpp">Periksa harga modal menu</h3>
+          <p>Data HPP transaksi belum lengkap sehingga estimasi margin masih parsial.</p>
+          <p class="scope">Katalog menunjukkan harga modal saat ini. Temuan di sini mengukur HPP pada transaksi historis.</p>
+          <a class="destination" href="https://kaching.id/menus?sort=cost_price&amp;dir=asc">Buka katalog menu <svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a>
+        </section>
       </div>
-      <div class="actions" data-state="attention">
-        <article class="action card first">
-          <div class="action-top"><span class="tile amber"><svg class="icon" aria-hidden="true"><use href="#wallet"/></svg></span><span class="pill warning">01 · Perlu diperiksa</span></div>
-          <h3>Periksa selisih kas</h3>
-          <p class="copy"><strong>2 dari 3 shift</strong> mencatat selisih kas fisik lebih dari Rp10.000.</p>
-          <button class="cta primary" type="button" data-open="cash-dialog">Periksa tutup shift <svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></button>
-        </article>
-        <article class="action card">
-          <div class="action-top"><span class="tile"><svg class="icon" aria-hidden="true"><use href="#file"/></svg></span><span class="pill">02 · Data belum lengkap</span></div>
-          <h3>Lengkapi HPP menu</h3>
-          <p class="copy"><strong>78,7% item penjualan</strong> belum memiliki data HPP. Estimasi margin masih parsial.</p>
-          <button class="cta" type="button" data-open="hpp-dialog">Periksa HPP menu <svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></button>
-        </article>
-      </div>
-      <div class="notice card" data-state="clear" hidden>
-        <span class="tile"><svg class="icon" aria-hidden="true"><use href="#shield"/></svg></span>
-        <div><h3>Tidak ada temuan pada pemeriksaan ini</h3><p class="copy">Pemeriksaan selisih kas dan kelengkapan HPP pada periode contoh telah selesai.</p></div>
-      </div>
-      <div class="notice card" data-state="incomplete" hidden>
-        <span class="tile amber"><svg class="icon" aria-hidden="true"><use href="#file"/></svg></span>
-        <div><h3>Data belum cukup untuk menentukan prioritas</h3><p class="copy">Pada skenario ini, catatan penutupan shift dan HPP transaksi belum tersedia.</p></div>
-      </div>
+    </div>
+    <section class="lower" aria-labelledby="ringkasan-bisnis">
+      <h2 id="ringkasan-bisnis" class="heading">Ringkasan bisnis</h2>
+      <dl class="panel" data-scenario="attention">
+        <div class="score-row"><dt>Kestabilan penjualan</dt><dd class="score-value">46 <span>/ 100</span></dd><dd class="score-context">Fluktuatif · 20 hari aktif berjualan</dd></div>
+        <div class="score-row"><dt>Kondisi keuntungan</dt><dd class="score-value">60 <span>/ 100</span></dd><dd class="score-context warning">Margin masih parsial</dd></div>
+        <div class="score-row"><dt>Pengelolaan kas</dt><dd class="score-value">23 <span>/ 100</span></dd><dd class="score-context warning">Ada selisih shift</dd></div>
+      </dl>
+      <p class="panel notice score-context" data-scenario="clear" hidden>Skor ringkasan belum disimulasikan untuk kondisi tanpa temuan.</p>
+      <p class="panel notice score-context" data-scenario="incomplete" hidden>Skor belum tersedia untuk skenario dengan data terbatas.</p>
     </section>
-    <section aria-labelledby="ringkasan">
-      <div class="section-head"><div><h2 id="ringkasan">Ringkasan bisnis</h2><p class="section-note">Skor dan kondisi yang mendasari evaluasi.</p></div></div>
-      <div class="scores" data-state="attention">
-        <article class="card score"><h3>Kestabilan penjualan</h3><div class="score-line"><span><b>46</b> <small>/ 100</small></span><span class="pill warning">Fluktuatif</span></div><p>20 hari aktif berjualan.</p></article>
-        <article class="card score"><h3>Kondisi keuntungan</h3><div class="score-line"><span><b>60</b> <small>/ 100</small></span><span class="pill neutral">Margin parsial</span></div><p>Skor dipengaruhi kelengkapan HPP.</p></article>
-        <article class="card score"><h3>Pengelolaan kas</h3><div class="score-line"><span><b>23</b> <small>/ 100</small></span><span class="pill warning">Ada selisih</span></div><p>Berdasarkan catatan tutup shift.</p></article>
-      </div>
-      <div class="card score-placeholder" data-state="clear" hidden>Skenario ini memperagakan hasil pemeriksaan tanpa temuan. Skor ringkasan belum disimulasikan.</div>
-      <div class="card score-placeholder" data-state="incomplete" hidden>Skor belum tersedia untuk skenario dengan data terbatas.</div>
-    </section>
-    <section aria-labelledby="analisis">
-      <div class="section-head"><div><h2 id="analisis">Analisis lanjutan</h2><p class="section-note">Buka alat sesuai temuan yang ingin Anda dalami.</p></div></div>
-      <div class="tools">
-        <a class="card tool" href="https://kaching.id/copilot/raw-material-intelligence"><span class="tile"><svg class="icon" aria-hidden="true"><use href="#box"/></svg></span><div><h3>Raw Material Intelligence</h3><p>Tinjau dampak harga bahan ke biaya menu.</p></div><svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a>
-        <a class="card tool" href="https://kaching.id/intelligence/risk-radar"><span class="tile"><svg class="icon" aria-hidden="true"><use href="#shield"/></svg></span><div><h3>Risk Radar</h3><p>Telusuri sinyal risiko operasional.</p></div><svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a>
-        <a class="card tool" href="https://kaching.id/intelligence/scenario"><span class="tile"><svg class="icon" aria-hidden="true"><use href="#chart"/></svg></span><div><h3>Scenario Simulator</h3><p>Uji dampak perubahan biaya.</p></div><svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a>
-      </div>
-      <details class="card ready" data-state="attention">
+    <section class="lower" aria-labelledby="analisis">
+      <h2 id="analisis" class="heading">Analisis lanjutan</h2>
+      <nav class="panel tools" aria-label="Alat analisis">
+        <a href="https://kaching.id/copilot/raw-material-intelligence">Raw Material Intelligence <small>Dampak harga bahan ke biaya menu</small><svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a>
+        <a href="https://kaching.id/intelligence/risk-radar">Risk Radar <small>Sinyal risiko operasional</small><svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a>
+        <a href="https://kaching.id/intelligence/scenario">Scenario Simulator <small>Dampak perubahan biaya</small><svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a>
+      </nav>
+      <details id="pembukuan" class="panel bookkeeping" data-scenario="attention">
         <summary>Kesiapan pembukuan · 46/100</summary>
-        <p>Tahap awal. Lengkapi catatan HPP dan penutupan shift sebelum menggunakan ringkasan sebagai bukti keuangan. Unduhan PDF tersedia pada halaman produksi.</p>
+        <p>Tahap awal. Lengkapi data HPP dan catatan penutupan shift untuk memperkuat bukti pembukuan.</p>
+        <a class="destination" href="https://kaching.id/copilot/financing-readiness/export">Unduh bukti finansial di BackOffice <svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a>
       </details>
     </section>
-    <footer>Preview UI Kaching Intelligence · Angka berasal dari contoh audit. Tautan alat membuka BackOffice Kaching.</footer>
+    <footer class="review" aria-label="Kontrol audit prototipe">
+      <label for="scenario">Skenario preview</label>
+      <select id="scenario">
+        <option value="attention">Perlu diperiksa</option>
+        <option value="clear">Tidak ada temuan</option>
+        <option value="incomplete">Data belum cukup</option>
+      </select>
+    </footer>
   </main>
 </div>
-<dialog id="cash-dialog" aria-labelledby="cash-title">
-  <div class="dialog-head"><h2 id="cash-title">Periksa tutup shift</h2><form method="dialog"><button aria-label="Tutup rincian kas">×</button></form></div>
-  <div class="dialog-content">
-    <p class="detail-meta">Data contoh · Evaluasi 30 hari terakhir</p>
-    <p class="fact"><strong>2 dari 3 shift</strong> berselisih lebih dari Rp10.000.</p>
-    <div><h3>Yang perlu diperiksa</h3><p class="copy">Bandingkan kas tercatat dan kas fisik pada penutupan shift yang memiliki selisih.</p></div>
-    <p class="detail-meta">Contoh ini hanya memuat jumlah shift. Riwayat menampilkan semua shift yang tercatat berselisih dalam 30 hari terakhir. Pilih outlet Anda di halaman riwayat.</p>
-    <a class="cta" href="https://kaching.id/shifts?range=30days&amp;status=selisih">Buka Riwayat Shift Berselisih <svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a>
-  </div>
-</dialog>
-<dialog id="hpp-dialog" aria-labelledby="hpp-title">
-  <div class="dialog-head"><h2 id="hpp-title">Periksa HPP menu</h2><form method="dialog"><button aria-label="Tutup rincian HPP">×</button></form></div>
-  <div class="dialog-content">
-    <p class="detail-meta">Data contoh · Evaluasi 30 hari terakhir</p>
-    <p class="fact"><strong>78,7% item penjualan</strong> belum memiliki HPP yang tercatat.</p>
-    <div><h3>Dampak pada ringkasan</h3><p class="copy">Perhitungan margin memakai data HPP yang tersedia sehingga hasilnya masih parsial.</p></div>
-    <p class="detail-meta">Nama menu per transaksi memerlukan data penjualan. Di katalog, Anda dapat memeriksa harga modal saat ini, diurutkan dari yang terendah.</p>
-    <a class="cta" href="https://kaching.id/menus?sort=cost_price&amp;dir=asc">Buka Katalog Menu <svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a>
-  </div>
-</dialog>
-<dialog id="demo-dialog" aria-labelledby="demo-title">
-  <div class="dialog-head"><h2 id="demo-title">Skenario preview</h2><form method="dialog"><button aria-label="Tutup pengaturan skenario">×</button></form></div>
-  <form class="dialog-content" method="dialog">
-    <label for="scenario">Kondisi halaman</label>
-    <select id="scenario">
-      <option value="attention">Perlu ditindaklanjuti</option>
-      <option value="clear">Tidak ada temuan</option>
-      <option value="incomplete">Data belum cukup</option>
-    </select>
-    <button class="cta primary" type="submit" value="apply">Terapkan skenario</button>
-  </form>
+<dialog id="mobile-navigation" aria-labelledby="nav-title">
+  <div class="menu-head"><h2 id="nav-title">BackOffice</h2><form method="dialog"><button aria-label="Tutup menu">×</button></form></div>
+  <nav class="nav" aria-label="Navigasi ponsel">
+    <a href="#utama" aria-current="page">Kaching Intelligence</a>
+    <a href="https://kaching.id/menus">Kelola Menu</a>
+    <a href="https://kaching.id/shifts">Riwayat Shift Kasir</a>
+    <a href="https://kaching.id/copilot/raw-material-intelligence">Raw Material Intel</a>
+  </nav>
 </dialog>
 <script>
-  for (const trigger of document.querySelectorAll('[data-open]')) {
-    trigger.addEventListener('click', () => document.getElementById(trigger.dataset.open).showModal());
+  const stacked = matchMedia('(max-width: 900px)');
+  const findings = Array.from(document.querySelectorAll('[data-detail]'));
+  const dock = document.getElementById('detail-dock');
+  const scenario = document.getElementById('scenario');
+  let selected = stacked.matches ? null : 'kas';
+
+  function renderDetails() {
+    dock.hidden = stacked.matches || scenario.value !== 'attention';
+    for (const finding of findings) {
+      const key = finding.dataset.detail;
+      const detail = document.getElementById('detail-' + key);
+      const target = stacked.matches ? document.getElementById('slot-' + key) : dock;
+      if (detail.parentElement !== target) target.appendChild(detail);
+      detail.hidden = key !== selected;
+      finding.setAttribute('aria-expanded', String(key === selected));
+    }
   }
-  const selector = document.getElementById('scenario');
-  const scenarioDialog = document.getElementById('demo-dialog');
-  const labels = { attention: '2 tindakan', clear: 'Tidak ada temuan', incomplete: 'Data terbatas' };
-  let activeState = 'attention';
-  scenarioDialog.addEventListener('close', () => {
-    if (scenarioDialog.returnValue !== 'apply') {
-      selector.value = activeState;
-      return;
-    }
-    activeState = selector.value;
-    for (const region of document.querySelectorAll('[data-state]')) {
-      region.hidden = region.dataset.state !== activeState;
-    }
-    document.getElementById('state-label').textContent = labels[activeState];
-    scenarioDialog.returnValue = '';
+
+  for (const finding of findings) {
+    finding.addEventListener('click', () => {
+      const key = finding.dataset.detail;
+      selected = stacked.matches && selected === key ? null : key;
+      renderDetails();
+    });
+  }
+  stacked.addEventListener('change', () => {
+    if (!stacked.matches && selected === null) selected = 'kas';
+    renderDetails();
   });
+  scenario.addEventListener('change', () => {
+    for (const region of document.querySelectorAll('[data-scenario]')) {
+      region.hidden = region.dataset.scenario !== scenario.value;
+    }
+    selected = stacked.matches ? null : 'kas';
+    renderDetails();
+  });
+  const mobileMenu = document.getElementById('mobile-navigation');
+  document.querySelector('.section-nav a[href="#pembukuan"]').addEventListener('click', () => {
+    document.getElementById('pembukuan').open = true;
+  });
+  document.querySelector('.mobile-menu').addEventListener('click', () => mobileMenu.showModal());
+  mobileMenu.querySelector('a[aria-current]').addEventListener('click', () => mobileMenu.close());
+  renderDetails();
 </script>
 </body>
 </html>
